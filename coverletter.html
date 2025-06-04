@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Sample Cover Letter</title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Example Cover Letter</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+    <main>
+      <br>
+      <section style="margin: 0 auto; width: 75%;">
+        <article style="border-radius: 10px; border: 4px solid #e0e0e0; padding: 40px">
+
+          <p><strong>Rob Catapano</strong><br>
+            414-698-4613 | <a href="mailto:rob.catapano@gmail.com">rob.catapano@gmail.com</a> | Layton, UT 84041</p>
+
+          <div id="current-date"></div>
+          <br>
+          <p><strong><mark>Your Company</mark></strong></p>
+
+          <p>Dear Hiring Manager,</p>
+
+          <p>
+            I am writing to apply for the <mark>Software Engineer position at Your Company</mark>, as advertised on <mark>Indeed</mark>.
+            With over five years of software engineering experience, I bring a proven ability to work in collaborative environments,
+            refining designs with team members, participating in code reviews, and managing pull requests.
+          </p>
+
+          <p>
+            I was a full-stack engineer at Insight Global, building web features using modern technologies including ASP.NET, React, Node.js, Express, and PostgreSQL.
+            My background also includes developing C# and Python applications for companies such as Sensato and The JAAW Group,
+            where I honed a strong understanding of object-oriented programming best practices.
+          </p>
+
+          <p>I believe I am a strong fit for this role for the following reasons:</p>
+
+          <ul>
+            <li>I am passionate about solving problems and delivering impactful features, not just polishing perfect code or architecture.</li>
+            <li>I thrive in collaborative coding environments and am comfortable working through code reviews and refining designs as a team.</li>
+            <li>I have technical leadership in prior roles such as a (non-official) QA team leader.</li>
+            <li>I genuinely enjoy mentoring and helping others grow their skills.</li>
+          </ul>
+
+          <p>
+            I’m enthusiastic about the opportunity to contribute to your team and would appreciate the chance to discuss how I can add value to <mark>Your Company</mark>.
+            Thank you for your time and consideration. I look forward to the opportunity to interview with you.
+          </p>
+
+          <p>Sincerely,<br>
+            Rob Catapano</p>
+        </article>
+      </section>
+      <hr/>
+    </main>
+    </div>
+  </div>
+  <hr/>
+<footer class="w3-container w3-indigo w3-center w3-margin-top">
+  <p>Additional Information</p>
+  <a href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn Account</a>
+  <br>
+  <a href="https://github.com/bobcatapano/" target="_blank">GitHub Site</a>
+  <p>CSS reference used in this site <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function updateDateTime() {
+    const nowTime = new Date();
+    const dateTime = nowTime.toLocaleDateString();
+    const myTime = nowTime.toLocaleTimeString();
+    document.getElementById('current-date').textContent = `${dateTime} ${myTime}`;
+  }
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+  console.log("Resume was viewed on date: " + new Date());
+</script>
+</body>
+</html>

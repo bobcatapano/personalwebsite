@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rob Catapano | Software Engineer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .fade-in-list li {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in-list li.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+        .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .flipper {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+
+    .flipped {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .front img, .back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+      .flip-button {
+    padding: 2px 4px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+    .back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<style>
+  html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Rob Catapano</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about" onclick="showAbout()">About Me</a></li>
+        <li class="nav-item"><a class="nav-link" href="./coverletter.html">Cover Letter</a></li>
+        <li class="nav-item"><a class="nav-link" onclick="showModal()">Career Goals</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/bobcatapano/" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        
+  <!-- Modal -->
+  <div class="modal fade" id="goalModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Career Goals</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <main style="max-width: 1000px; margin: auto;">
+            <section style="background-color: white;padding: 7px;border-radius: 8px;">
+              <ol class="fade-in-list">
+                <li>Continue as a Full Stack Software Developer</li>
+                <li>Become a Lead Software Engineer</li>
+                <li>To become a Software Architect</li>
+                <li>Complete my on-line Software Engineering degree</li>
+              </ol>
+            </section>
+          </main>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<div class="container mt-5">
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-row-padding">
+      <div class="w3-third">
+        <div class="w3-white w3-text-grey w3-card-4">
+
+            <div class="flip-container w3-display-container">
+              <div class="flipper" id="flipperCard">
+                <div class="front">
+                 <img src="/img/temp.jpg" alt="Front Image">
+                </div>
+              <div class="back">
+                 <img src="/img/temp2.jpg" alt="Back Image">
+              </div>
+            </div>
+            <div class="w3-display-bottomleft w3-container w3-text-black mt-2">
+              <button class="btn btn-primary flip-button" onclick="flipCard()">Flip Image</button>
+            </div>
+           </div>
+      
+          <br>
+          <div id="contact/skills" class="w3-container">
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-indigo"></i>Software Developer</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-indigo"></i>Layton, UT</p>
+            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-indigo"></i>rob.catapano@gmail.com</p>
+            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-indigo"></i>4146984613</p>
+            <hr>
+            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-indigo"></i>Skills</b></p>
+            <p>C#.NET (Core)</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:95%">95%</div>
+            </div>
+            <p>Python</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">
+                <div class="w3-center w3-text-white">90%</div>
+              </div>
+            </div>
+            <p>JavaScript</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">90%</div>
+            </div>
+            <p>TypeScript</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:72%">72%</div>
+            </div>
+            <br>
+          </div>
+        </div><br>
+        <div class="w3-white w3-text-grey w3-card-4">
+        <table class="table caption-top">
+          <caption style="margin: 0 auto; width: 50%; text-align: center;"><strong>References</strong></caption>
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">email</th>
+            <th scope="col">phone</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Joe Ward</td>
+            <td>President of JAAW</td>
+            <td>jward@thejaawgroup.com</td>
+            <td>801-866-9248</td>
+          </tr>
+          <tr>
+            <td>Matt Beck</td>
+            <td>Former QA Manager</td>
+            <td>beck.matt@gmail.com</td>
+            <td>206-660-9859</td>
+          </tr>
+          <tr>
+            <td>Jeremy Heiner</td>
+            <td>Former Software Developer</td>
+            <td>jeremyheiner@gmail.com</td>
+            <td>N/A</td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="w3-twothird">
+        <div class="w3-container w3-card w3-white">
+        <div id="about-section" class="about-container" style="display: none;">
+
+          <section class="w3-container">
+            <div class="w3-card w3-white w3-margin-bottom about-card">
+              <span class="close-button" onclick="hideAbout()">X</span>
+              <header>
+                <h1>Thank you for reading this!</h1>
+                <h2>About Me,</h2>
+              </header>
+              <main>
+                <section>
+                  <article>
+                    <div class="section">
+                      <h1>Summary</h1>
+                      <p>Software Engineer with 5+ years of experience delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, Python, SQL, HTML, CSS, and Azure.</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="section">
+                      <h2>Skills & Tools</h2>
+
+                      <p><strong>Languages:</strong> C#, JavaScript, TypeScript, Python, SQL, HTML, CSS</p>
+                      <p><strong>Frameworks:</strong> ASP.NET, React, Node.js, Express, Blazor, MVC, MVVM</p>
+                      <p><strong>Tools:</strong> Docker, Git (GitHub, GitLab), Azure DevOps, Visual Studio, VS Code</p>
+                      <p><strong>Testing:</strong> Selenium, Jest, Cypress</p>
+                      <p><strong>Databases:</strong> MS SQL Server, PostgreSQL, Azure Cosmos DB</p>
+                      <p><strong>Cloud:</strong> Microsoft Azure, AWS (basic knowledge), SaaS</p>
+                      <p><strong>Other:</strong> CI/CD pipelines, RESTful APIs, WinForms, WPF</p>
+                    </div>
+                    <p>
+                      I’m a software engineer who enjoys solving complex problems with clean, reliable code. Over the years, I’ve worked across the stack—from building C# automation tools for desktop and web testing, to designing scalable ASP.NET Core back-end systems, to working with React and Blazor on the front end.
+                    </p>
+                    <p>
+                      I’ve built multithreaded applications, automated deployment systems, and test frameworks using WPF, WinForms, and XML. I’ve worked with Azure services like Functions, Cosmos DB, and Event Hubs, and I’m comfortable with messaging systems like RabbitMQ and caching layers like Redis.
+                    </p>
+                    <p>
+                      More importantly, I am a geek :)
+                    </p>
+                  </article>
+                </section>
+              </main>
+            </div>
+          </section>
+        </div>
+        </div>
+
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <!-- <div id="current-date"></div> -->
+          <h2 id="experience" class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-indigo"></i>Work Experience</h2>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Insight Global</b></h5>
+            <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2024 - Feb 2025</h6>
+            <ul>
+              <li>Developed dynamic pages using React JavaScript, Node.js, and Express, backed by PostgreSQL.</li>
+              <li>Designed and implemented RESTful APIs for scalable distributed systems.</li>
+              <li>Built automated test suites using Jest (unit) and Cypress (end-to-end).</li>
+              <li>Utilized GitLab and participated in Agile sprints with Atlassian Jira.</li>
+            </ul>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Sensato/Cloudwave</b></h5>
+            <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jul 2022 - Apr 2024</h6>
+            <ul>
+              <li>Enhanced an Azure-hosted C# ASP.NET Core application with a React JavaScript frontend.</li>
+              <li>Integrated third-party RESTful APIs in C#.NET Core.</li>
+              <li>Maintained/Designed Python applications on Linux OS with a PostgreSQL backend.</li>
+              <li>Worked collaboratively in an Agile environment using GitHub for version control and code reviews.</li>
+            </ul>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>JAAW</b></h5>
+            <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2021 - Jun 2022</h6>
+            <ul>
+              <li>Developed a Blazor web app with ASP.NET Core, C#, and SQL Server.</li>
+              <li>Created a .NET Core auditing tool to validate software on networked computers.</li>
+              <li>Implemented distributed messaging C# features with RabbitMQ and Redis.</li>
+              <li>Used Git for version control and followed Agile workflows.</li>
+              <li>Worked with Python scripts to automate file server maintenance-related tasks</li>
+            </ul>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>SS&C</b></h5>
+            <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Nov 2018 - May 2021</h6>
+            <ul>
+              <li>Enhanced ASP.NET MVC and SQL Server-based application.</li>
+              <li>Built RESTful APIs and backend services in C#.</li>
+              <li>Gained working knowledge of React and JavaScript.</li>
+              <li>Created Python/Selenium end-to-end automation tests.</li>
+              <li>Participated in Agile development cycles.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="w3-container w3-card w3-white">
+          <h2 id="education" class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-indigo"></i>Education</h2>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b><a href="https://ox.ac.uk" target="_blank">Oxford University</a></b></h5>
+            <h6 class="w3-text-indigo"><i class="fas fa-user-graduate fa-fw w3-margin-right"></i>M.S. Computation</h6>
+            <p><em>Computer Science related</em></p>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b><a href="https://www.uwp.edu/" target="_blank">University of Wisconsin - Parkside</a></b></h5>
+            <h6 class="w3-text-indigo"><i class="fas fa-user-graduate fa-fw w3-margin-right"></i>B.S. Physics</h6>
+            <p><em>Computational based - related to Computer Science</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="w3-container w3-indigo w3-center w3-margin-top">
+    <p>Additional Information</p>
+    <a href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn Account</a>
+    <br>
+    <a href="https://github.com/bobcatapano/" target="_blank">GitHub Site</a>
+    <br>
+    <p>CSS reference used in this site <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  function showAbout() {
+    const about = document.getElementById("about-section");
+    about.style.display = "flex";
+  }
+  function hideAbout() {
+    const about = document.getElementById("about-section");
+    about.style.display = "none";
+  }
+
+  window.addEventListener("load", () => {
+    if (location.hash === "#about") {
+      showAbout();
+    }
+  });
+
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#about") {
+      showAbout();
+    }
+  });
+</script>
+<script>
+  function updateDateTime() {
+    const nowTime = new Date();
+    const dateTime = nowTime.toLocaleDateString();
+    const myTime = nowTime.toLocaleTimeString();
+    document.getElementById('current-date').textContent = `As of this Date and Time: ${dateTime} ${myTime}`;
+  }
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+  console.log("Resume was viewed on date: " + new Date());
+</script>
+  <script>
+    function showModal() {
+      const modal = new bootstrap.Modal(document.getElementById('goalModal'));
+      modal.show();
+    }
+
+    // Handle fade-in when modal is shown
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalElement = document.getElementById('goalModal');
+
+      modalElement.addEventListener('shown.bs.modal', () => {
+        const items = modalElement.querySelectorAll('.fade-in-list li');
+        items.forEach((item, index) => {
+          item.classList.remove('visible'); // reset first
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 600);
+        });
+      });
+
+      // Optional: Reset visibility when modal is hidden
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        const items = modalElement.querySelectorAll('.fade-in-list li');
+        items.forEach(item => item.classList.remove('visible'));
+      });
+    });
+  </script>
+  <script>
+  function flipCard() {
+    document.getElementById('flipperCard').classList.toggle('flipped');
+  }
+</script>
+
+
+</body>
+</html>
+

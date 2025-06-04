@@ -1,0 +1,130 @@
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  font-style: normal;
+  font: 100%/1.4 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  color: blue;
+}
+
+* {
+  box-sizing: border-box;
+  font: inherit;
+}
+
+#about-section {
+  padding: 2rem;
+  border: 2px solid #ccc;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 3rem auto;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.about-card {
+  position: relative;
+  padding: 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.about-card header,
+.about-card main,
+.about-card section,
+.about-card article {
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+}
+
+.about-card header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.about-card header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #555;
+  font-weight: normal;
+}
+
+.about-card article p {
+  line-height: 1.7;
+  margin: 1rem 0;
+  color: #444;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+h2, h4, h5 {
+  color: #2c3e50;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+footer {
+  font-size: 0.9rem;
+}
+
+body {
+    background: white;
+    color: black;
+  }
+
+.image-left {
+  float: left;
+  margin-right: 15px;
+  padding: 15px;
+}
+
+
+
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* styles.css */
+
+
+
+
+
+
+
