@@ -1,0 +1,54 @@
+<div id="dashboard-root" ng-controller="DashboardController as dash" ng-init="dash.init()">
+
+    <h2>Testing Metrics Dashboard</h2>
+
+    <!-- Filters -->
+    <div style="margin-bottom: 15px;">
+        <label>Status:</label>
+        <select ng-model="dash.filterStatus"
+                ng-options="option.value as option.label for option in dash.statusOptions">
+        </select>
+
+        <label style="margin-left: 20px;">Start Date:</label>
+        <input type="date" ng-model="dash.startDate">
+
+        <label style="margin-left: 10px;">End Date:</label>
+        <input type="date" ng-model="dash.endDate">
+
+        <label style="margin-left: 20px;">Test Name:</label>
+        <select ng-model="dash.testNameFilter">
+            <option value="">All</option>
+            <option ng-repeat="name in dash.uniqueTestNames" value="{{name}}">{{name}}</option>
+        </select>
+    </div>
+
+    <!-- Charts -->
+    <div style="display: flex; gap: 50px;">
+        <canvas id="statusChart" width="300" height="300"></canvas>
+        <canvas id="barChart" width="600" height="300"></canvas>
+    </div>
+
+    <!-- Table -->
+    <table>
+        <thead>
+        <tr>
+            <th class="sortable" ng-click="dash.sortBy('name')">Test Name
+                <span ng-if="dash.sortKey==='name'">({{dash.sortReverse ? '▼' : '▲'}})</span>
+            </th>
+            <th class="sortable" ng-click="dash.sortBy('status')">Status
+                <span ng-if="dash.sortKey==='status'">({{dash.sortReverse ? '▼' : '▲'}})</span>
+            </th>
+            <th class="sortable" ng-click="dash.sortBy('timestamp')">Date
+                <span ng-if="dash.sortKey==='timestamp'">({{dash.sortReverse ? '▼' : '▲'}})</span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="test in dash.getFilteredTests() | orderBy:dash.sortKey:dash.sortReverse">
+            <td>{{test.name}}</td>
+            <td>{{test.status}}</td>
+            <td>{{test.timestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

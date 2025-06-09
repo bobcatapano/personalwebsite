@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+#resumeContainer {
+    display: flex;
+    height: 100vh; /* or desired height */
+}
+
+.sidebar {
+    width: 30%;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.job-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.job-item:hover {
+    background-color: #e9ecef;
+}
+
+.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.details {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.job-title {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.company {
+    font-weight: bold;
+    color: #555;
+}
+
+.dates {
+    margin-top: 5px;
+    font-size: 0.95em;
+    color: #888;
+}
+
+.description {
+    margin-top: 20px;
+}
+
+/* Fade-in animation */
+@keyframes fadeInLine {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-line {
+    opacity: 0;
+    animation: fadeInLine 0.5s forwards;
+}

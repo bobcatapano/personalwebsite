@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="resumeIndeedStyle.css">
+  <link rel="stylesheet" href="angularGraph.css">
+  <title>SPA</title>
+</head>
+<body class="w3-light-blue">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Rob Catapano</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
+        <li class="nav-item"><a class="nav-link" href="coverletter.html">Cover Letter</a></li>
+        <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <!--<img src="/img/3d-under-construction-concept-2B77KY2.jpg" alt="Under Construction">
+  <h1>Working on the SPA (Single Page Application) Site</h1>-->
+  <br>
+  <nav>
+    <button onclick="changeContent('resume')">Resume based on Indeed</button>
+    <button onclick="changeContent('angular')">AngularJS Example</button>
+  </nav>
+ <br>
+  <div id="general-home">
+    <h1>Welcome to the SPA Site!</h1>
+    <p>This is the landing page before you click any buttons.</p>
+  </div>
+  <div id="content"></div>
+
+  <script src="main.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
