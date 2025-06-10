@@ -92,10 +92,6 @@ footer {
   font-size: 0.9rem;
 }
 
-body {
-    background: white;
-    color: black;
-  }
 
 .image-left {
   float: left;
@@ -117,6 +113,17 @@ body {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+
+.card {
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 
