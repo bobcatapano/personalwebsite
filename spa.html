@@ -12,6 +12,108 @@
   <link rel="stylesheet" href="angularGraph.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <title>SPA</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
+      color: #333;
+      padding: 20px;
+    }
+
+    nav {
+      margin-bottom: 20px;
+    }
+
+    nav button {
+      margin-right: 10px;
+      padding: 10px 16px;
+      border: none;
+      background-color: #0d6efd;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    nav button:hover {
+      background-color: #0b5ed7;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+    }
+
+    /* Slide In Animation */
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #general-home {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      opacity: 0;
+      animation: slideInLeft 1s ease-out forwards;
+    }
+
+    /* Fade-in animation class */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    /* Delays for sequencing fade-ins */
+    .delay-1 { animation-delay: 1s; }
+    .delay-2 { animation-delay: 1.2s; }
+    .delay-3 { animation-delay: 1.4s; }
+    .delay-4 { animation-delay: 1.6s; }
+
+    #general-home h2 {
+      color: #0d6efd;
+      margin-bottom: 10px;
+    }
+
+    #general-home p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      margin-top: 15px;
+      background-color: #d1e7dd;
+      color: #0f5132;
+      padding: 12px;
+      border-left: 5px solid #0f5132;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+
+  </style>
 </head>
 <body class="w3-light-blue">
 
@@ -24,7 +126,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
-        <li class="nav-item"><a class="nav-link" href="coverletter.html">Cover Letter</a></li>
         <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
       </ul>
     </div>
@@ -39,11 +140,28 @@
     <button onclick="changeContent('angular')">AngularJS Example</button>
     <button onclick="changeContent('components')">Resume WebPage Example</button>
   </nav>
- <br>
-  <div id="general-home">
-    <h1>Welcome to the SPA Site!</h1>
-    <p>This is the landing page before you click any buttons.</p>
+
+  <ul>
+    <li><strong>Resume based on Indeed</strong> – Displays a resume tailored to an Indeed job posting.</li>
+    <li><strong>AngularJS Example</strong> – Loads an AngularJS dashboard for filtering and test status display.</li>
+    <li><strong>Resume WebPage Example</strong> – Shows a full resume website layout example using HTML/CSS/JS.</li>
+  </ul>
+
+  <div id="general-home" class="slide-in">
+    <h2 class="fade-in delay-1">👋 Welcome to Singel Page Application Interactive Portfolio</h2>
+    <p class="fade-in delay-2">
+      Explore this single-page application to discover hand-crafted resumes,
+      project demos, and component-based web layouts.
+    </p>
+    <p class="fade-in delay-3">
+      🚀 Click any of the buttons above to get started — whether you're curious about my
+      resume for Indeed, want to see AngularJS in action, or browse an interactive web-based résumé.
+    </p>
+    <div class="highlight-box fade-in delay-4">
+      <strong>Tip:</strong> This site is 100% client-side, fast, and built with clean code principles!
+    </div>
   </div>
+
   <div id="content"></div>
 
   <script src="main.js"></script>
