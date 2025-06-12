@@ -46,6 +46,12 @@
             background-color: #28a745;
             color: white;
         }
+
+        button.remove-btn {
+            background-color: #dc3545;
+            margin-left: 10px;
+        }
+
         #checkout-modal {
             position: fixed;
             top: 0; left: 0;
@@ -162,6 +168,15 @@
         updateCart();
     }
 
+    function removeFromCart(type) {
+        const index = cart.findIndex(item => item.type === type);
+        if (index !== -1) {
+            totalPrice -= cart[index].price;
+            cart.splice(index, 1);
+            updateCart();
+        }
+    }
+
     function updateCart() {
         const cartItems = document.getElementById("cart-items");
         const totalPriceElement = document.getElementById("total-price");
@@ -174,15 +189,15 @@
         } else {
             cart.forEach(item => {
                 const li = document.createElement("li");
-                li.textContent = `${item.name} - $${item.price}`;
+                li.innerHTML = `${item.name} - $${item.price}
+            <button class="remove-btn" onclick="removeFromCart('${item.type}')">Remove</button>`;
                 cartItems.appendChild(li);
             });
             checkoutBtn.disabled = false;
         }
 
-        totalPriceElement.textContent = `Total (example) Price: $${totalPrice}`;
+        totalPriceElement.textContent = `Total: $${totalPrice}`;
     }
-
 
     function openCheckout() {
         const modal = document.getElementById("checkout-modal");
@@ -193,7 +208,8 @@
         itemsList.innerHTML = "";
         cart.forEach(item => {
             const li = document.createElement("li");
-            li.textContent = `${item.name} - $${item.price}`;
+            li.innerHTML = `${item.name} - $${item.price}
+          <button class="remove-btn" onclick="removeFromCart('${item.type}'); closeCheckout()">Remove</button>`;
             itemsList.appendChild(li);
         });
 
@@ -204,6 +220,7 @@
 
     function closeCheckout() {
         document.getElementById("checkout-modal").style.display = "none";
+        updateCart(); // Update main cart if item was removed from modal
     }
 
     function completeCheckout() {
@@ -217,7 +234,15 @@
         });
 
         document.getElementById("thank-you-msg").style.display = "block";
+
+        // Clear cart after download
+        cart = [];
+        totalPrice = 0;
+        updateCart();
     }
+
+
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
