@@ -29,6 +29,64 @@ function loadPage() {
 		});
 }
 
+function loadSectionContent(section) {
+	const sidebarContent = document.getElementById('sidebar-content');
+
+	switch (section) {
+		case 'home':
+			sidebarContent.innerHTML = `
+		<section id="home" class="section bg-light text-center details">
+		  <div class="container details">
+			<h1>Home Page</h1>
+			<p class="lead">Full-Stack Software Engineer | C# | Python | JavaScript</p>
+			<p>Deciding what to place here.</p>
+			<br>
+		  </div>
+		</section>
+		  `;
+				break;
+			case 'projects':
+				sidebarContent.innerHTML = `
+			<section id="projects" class="section bg-light text-center details">
+			  <div class="container details">
+				<h1>Projects</h1>
+				<p class="lead">Deciding what to list</p>
+				<p>place holder</p>
+				<br>
+			  </div>
+			</section>
+		  `;
+				break;
+			case 'about':
+				sidebarContent.innerHTML = `
+			<section id="about" class="section bg-light text-center details">
+			  <div class="container details">
+				<h1>About</h1>
+				<p class="lead">Deciding what to list</p>
+				<p>place holder</p>
+				<br>
+			  </div>
+			</section>
+		  `;
+				break;
+			case 'contact':
+				sidebarContent.innerHTML = `
+			<section id="contact" class="section bg-light text-center details">
+				  <div class="container details">
+					<h1>Contact</h1>
+					<p class="lead">Deciding what to list</p>
+					<p>place holder</p>
+					<br>
+				  </div>
+			</section>
+		  `;
+				break;
+
+		default:
+			sidebarContent.innerHTML = `<p>Section not found.</p>`;
+	}
+}
+
 
 function loadDashboardPage() {
 	const contentDiv = document.getElementById('content');
@@ -77,80 +135,68 @@ function loadDashboardPage() {
 		});
 }
 
-
 function loadSidebarPage() {
 	const contentDiv = document.getElementById('content');
 	contentDiv.innerHTML = `
- 
-  <div class="row">
-    
-    <!-- Sidebar -->
-    <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar py-4 shadow-sm rounded-end">
-      <div class="accordion" id="sidebarAccordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingMain">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMain" aria-expanded="true" aria-controls="collapseMain">
-              Main
-            </button>
-          </h2>
-          <div id="collapseMain" class="accordion-collapse collapse show" aria-labelledby="headingMain">
-            <div class="accordion-body p-0">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#home" onclick="highlight(this)">
-                    <i class="bi bi-house-door"></i> Home
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#projects" onclick="highlight(this)">
-                    <i class="bi bi-briefcase"></i> Projects
-                  </a>
-                </li>
-              </ul>
+    <div class="container-fluid">
+      <div class="row">
+        
+        <!-- Sidebar -->
+        <!--<nav class="col-md-3 col-lg-2 bg-light sidebar py-4 shadow-sm rounded-end" style="min-height: 100vh;">-->
+          <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar py-4 shadow-sm rounded-end">
+          <div class="accordion" id="sidebarAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingMain">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMain">
+                  Main
+                </button>
+              </h2>
+              <div id="collapseMain" class="accordion-collapse collapse show">
+                <div class="accordion-body p-0">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" onclick="loadSectionContent('home')"><i class="bi bi-house-door"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" onclick="loadSectionContent('projects')"><i class="bi bi-briefcase"></i> Projects</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingExtra">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExtra">
+                  Extra
+                </button>
+              </h2>
+              <div id="collapseExtra" class="accordion-collapse collapse">
+                <div class="accordion-body p-0">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" onclick="loadSectionContent('about')"><i class="bi bi-person"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" onclick="loadSectionContent('contact')"><i class="bi bi-envelope"></i> Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </nav>
 
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingExtra">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExtra" aria-expanded="false" aria-controls="collapseExtra">
-              Extra
-            </button>
-          </h2>
-          <div id="collapseExtra" class="accordion-collapse collapse" aria-labelledby="headingExtra">
-            <div class="accordion-body p-0">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link" href="#about" onclick="highlight(this)">
-                    <i class="bi bi-person"></i> About
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#contact" onclick="highlight(this)">
-                    <i class="bi bi-envelope"></i> Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
+        <!-- Main Content Area -->
+        <main class="col-md-9 col-lg-10 px-4 pt-4">
+          <div id="sidebar-content">
+            <h1 class="h2">Single Page Section</h1>
+            <p class="lead">Click a link on the left to load content here.</p>
           </div>
-        </div>
-      </div>
-    </nav>
+        </main>
 
-    <!-- Main Content Right Next to Sidebar -->
-<main style="flex-grow: 1; padding: 2rem 1.5rem 2rem 1rem; max-width: 960px;">
-      <div class="pb-2 mb-3 border-bottom">
-        <h1 class="h2">Single Page Section</h1>
-        <p class="lead">Still a work in progress!</p>
       </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Reusable Panel</h5>
-          <p class="card-text">Content stuff goes here. TO DO..</p>
-        </div>
-      </div>
-    </main>
+    </div>
   `;
 }
 
@@ -169,14 +215,6 @@ function changeContent(page) {
 	}
 
 	switch (page) {
-		case 'game':
-			contentDiv.innerHTML = `<canvas id="gameCanvas" width="800" height="600"></canvas>`;
-			loadScript('game.js', () => {
-				if (typeof startGame === 'function') {
-					startGame();
-				}
-			});
-			break;
 		case 'resume':
 			loadPage();
 			break;

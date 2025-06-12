@@ -22,7 +22,7 @@
       transform: translateY(0);
     }
 
-        .flip-container {
+    .flip-container {
       perspective: 1000px;
       width: 100%;
       max-width: 400px;
@@ -56,7 +56,7 @@
       object-fit: cover;
     }
 
-      .flip-button {
+    .flip-button {
     padding: 2px 4px;
     font-size: 16px;
     border-radius: 8px;
@@ -64,6 +64,17 @@
 
     .back {
       transform: rotateY(180deg);
+    }
+    .skill-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-label {
+      position: absolute;
+      top: -1.5rem;
+      left: 0;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -85,6 +96,7 @@
         <li class="nav-item"><a class="nav-link" onclick="showModal()">Career Goals</a></li>
         <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
         <li class="nav-item"><a class="nav-link" href="spa.html">SPA Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="asteriods_game.html">Asteroids</a></li>
       </ul>
     </div>
   </div>
@@ -95,8 +107,8 @@
     <div class="modal-dialog">
       <div class="modal-content">
 
-        <div class="modal-header">
-          <h5 class="modal-title">Career Goals</h5>
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title text-center w-100">Career Goals</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -105,9 +117,8 @@
             <section style="background-color: white;padding: 7px;border-radius: 8px;">
               <ol class="fade-in-list">
                 <li>Continue as a Full Stack Software Developer</li>
-                <li>Become a Lead Software Engineer</li>
-                <li>To become a Software Architect</li>
-                <li>Complete my on-line Software Engineering degree</li>
+                <li>Build a Portfolio and Personal Brand</li>
+                <li>Speak at conferences or tech meetups</li>
               </ol>
             </section>
           </main>
@@ -143,25 +154,28 @@
             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-indigo"></i>Layton, UT</p>
             <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-indigo"></i>rob.catapano@gmail.com</p>
             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-indigo"></i>414-698-4613</p>
-            <hr>
+
             <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-indigo"></i>Skills</b></p>
-            <p>C#.NET (Core)</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:95%">95%</div>
-            </div>
-            <p>Python</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">
-                <div class="w3-center w3-text-white">90%</div>
+            <br>
+            <div class="skill-container">
+              <div class="skill-label">C#.NET (Core)</div>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:95%">95%</div>
               </div>
             </div>
-            <p>JavaScript</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">90%</div>
+
+            <div class="skill-container">
+              <div class="skill-label">Python</div>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">90%</div>
+              </div>
             </div>
-            <p>TypeScript</p>
-            <div class="w3-light-grey w3-round-xlarge w3-small">
-              <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:82%">82%</div>
+
+            <div class="skill-container">
+              <div class="skill-label">JavaScript</div>
+              <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">90%</div>
+              </div>
             </div>
             <br>
           </div>
@@ -219,7 +233,7 @@
                       <p>Software Engineer with 5+ years of experience delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, Python, SQL, HTML, CSS, and Azure.</p>
                     </div>
 
-                    <hr>
+                    <br>
 
                     <div class="section">
                       <h2>Skills & Tools</h2>
