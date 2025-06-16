@@ -16,11 +16,50 @@ const SHOW_CENTRE_DOT = false; // show or hide ship's centre dot
 var bullets = [];
 const BULLET_SPEED = 500; // pixels per second
 const BULLET_LIFE = 60;   // frames bullets last (2 seconds at 30 FPS)
+const BULLET_HIT_SCORE = 5;
 const ROID_LARGE = 100;
 const ROID_MEDIUM = 50;
 const ROID_SMALL = 25;
+let score = 0;
+let level = 1;
+let roidCount = ROID_NUM; // starting number of asteroids
 
+let alienTimer = 0;
+const ALIEN_LIFETIME = 600; // frames (~10 seconds at 60fps)
+const ALIEN_SPEED = 2;
+const ALIEN_RADIUS = 15;
+const ALIEN_FIRE_CHANCE = 0.01; // chance to fire each frame
+const ALIEN_BULLET_SPEED = 5;
+let alienBullets = [];
+let alienExists = false;
+let alien = null;
 
+//let alien = {
+//    active: false,
+//    x: 0,
+//    y: 0,
+//    xv: 2,
+//    yv: 1,
+//    r: SHIP_SIZE / 2,
+//    timeLeft: 0,
+//    explodeTime: 0
+//};
+
+//let alien = {
+//    x: canv.width / 4,
+//    y: canv.height / 4,
+//    r: SHIP_SIZE * 0.5,
+//    xv: 1.5,
+//    yv: 1.2,
+//    active: false,
+//    visibleTime: FPS * 10,
+//    shotCooldown: 0,
+//    destroyed: false,
+//    explodeTime: 0
+//};
+
+const ALIEN_SPAWN_TIME = 300; // Frames
+const ALIEN_DURATION = 600;
 
 /** @type {HTMLCanvasElement} */
 var canv = document.getElementById("gameCanvas");
@@ -32,6 +71,7 @@ var ship = newShip();
 // set up asteroids
 var roids = [];
 createAsteroidBelt();
+alien = createAlien();
 
 // set up event handlers
 document.addEventListener("keydown", keyDown);
@@ -39,6 +79,51 @@ document.addEventListener("keyup", keyUp);
 
 // set up the game loop
 setInterval(update, 1000 / FPS);
+
+function createAlien() {
+    return {
+        x: canv.width / 4,
+        y: canv.height / 4,
+        r: SHIP_SIZE * 0.5,
+        xv: 1.5,
+        yv: 1.2,
+        active: false,
+        visibleTime: FPS * 10,
+        shotCooldown: 0,
+        destroyed: false,
+        explodeTime: 0
+    };
+}
+
+
+function createAlienShip() {
+  return {
+    x: Math.random() * canv.width,
+    y: Math.random() * canv.height,
+    r: ALIEN_RADIUS,
+    dx: 0,
+    dy: 0,
+    explodeTime: 0
+  };
+}
+
+function alienFire() {
+  const angle = Math.atan2(ship.y - alien.y, ship.x - alien.x);
+  alienBullets.push({
+    x: alien.x,
+    y: alien.y,
+    dx: ALIEN_BULLET_SPEED * Math.cos(angle),
+    dy: ALIEN_BULLET_SPEED * Math.sin(angle)
+  });
+}
+
+function drawExplosion(x, y, r) {
+  ctx.fillStyle = 'orange';
+  ctx.beginPath();
+  ctx.arc(x, y, r * 1.5, 0, Math.PI * 2, false);
+  ctx.fill();
+}
+
 
 function shootBullet() {
     // only shoot if ship is not exploding
@@ -54,26 +139,29 @@ function shootBullet() {
     });
 }
 
-
 function createAsteroidBelt() {
-    roids = [];
-    var x, y;
-    for (var i = 0; i < ROID_NUM; i++) {
-        // random asteroid location (not touching spaceship)
-        do {
-            x = Math.floor(Math.random() * canv.width);
-            y = Math.floor(Math.random() * canv.height);
-        } while (distBetweenPoints(ship.x, ship.y, x, y) < ROID_SIZE * 2 + ship.r);
-        roids.push(newAsteroid(x, y, ROID_LARGE));
-    }
+  roids = [];
+  let x, y;
+  let numAsteroids = ROID_NUM + level - 1; // more asteroids each level
+  for (let i = 0; i < numAsteroids; i++) {
+    do {
+      x = Math.floor(Math.random() * canv.width);
+      y = Math.floor(Math.random() * canv.height);
+    } while (distBetweenPoints(ship.x, ship.y, x, y) < ROID_SIZE * 2 + ship.r);
+    roids.push(newAsteroid(x, y));
+  }
 }
+
+
 
 function distBetweenPoints(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
 function explodeShip() {
-    ship.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
+    exploding = true;
+    ship.explodeTime = Math.ceil(0.3 * FPS); // 0.3 seconds
+    ship.dead = true; // <- this flag used to suppress alien firing
 }
 
 function keyDown(/** @type {KeyboardEvent} */ ev) {
@@ -129,55 +217,25 @@ function newAsteroid(x, y, size = ROID_LARGE) {
 
 
 function newShip() {
-    return {
+   return {
         x: canv.width / 2,
         y: canv.height / 2,
-        a: 90 / 180 * Math.PI, // convert to radians
         r: SHIP_SIZE / 2,
-        blinkNum: Math.ceil(SHIP_INV_DUR / SHIP_BLINK_DUR),
-        blinkTime: Math.ceil(SHIP_BLINK_DUR * FPS),
-        explodeTime: 0,
+        a: 90 / 180 * Math.PI,
         rot: 0,
         thrusting: false,
         thrust: {
             x: 0,
             y: 0
-        }
-    }
+        },
+        exploding: false,
+        blinkNum: Math.ceil(SHIP_BLINK_DUR * FPS),
+        blinkTime: Math.ceil(SHIP_BLINK_DUR * FPS),
+        canShoot: true,
+        lasers: [],
+        deadByAlien: false // ✅ ADD THIS HERE
+    };
 }
-
-function resolveAsteroidCollision(a1, a2) {
-    const dx = a2.x - a1.x;
-    const dy = a2.y - a1.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    const nx = dx / dist;
-    const ny = dy / dist;
-
-    const tx = -ny;
-    const ty = nx;
-
-    const dpTan1 = a1.xv * tx + a1.yv * ty;
-    const dpTan2 = a2.xv * tx + a2.yv * ty;
-
-    const dpNorm1 = a1.xv * nx + a1.yv * ny;
-    const dpNorm2 = a2.xv * nx + a2.yv * ny;
-
-    const m1 = dpNorm2;
-    const m2 = dpNorm1;
-
-    a1.xv = tx * dpTan1 + nx * m1;
-    a1.yv = ty * dpTan1 + ny * m1;
-    a2.xv = tx * dpTan2 + nx * m2;
-    a2.yv = ty * dpTan2 + ny * m2;
-
-    const overlap = 0.5 * (a1.r + a2.r - dist + 0.1);
-    a1.x -= overlap * nx;
-    a1.y -= overlap * ny;
-    a2.x += overlap * nx;
-    a2.y += overlap * ny;
-}
-
 
 function update() {
     var blinkOn = ship.blinkNum % 2 == 0;
@@ -186,6 +244,11 @@ function update() {
     // draw space
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canv.width, canv.height);
+    ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 20, 30);
+    ctx.fillText("Level: " + level, canv.width - 100, 30);
+
 
     // draw the asteroids
     var a, r, x, y, offs, vert;
@@ -431,12 +494,176 @@ function update() {
                     roids.push(newAsteroid(roids[i].x, roids[i].y, ROID_SMALL));
                 }
 
-                // destroy the asteroid
                 roids.splice(i, 1);
+                score += 5; // Add score for asteroid hit
                 break;
+
             }
         }
     }
 
+    // Spawn alien
+    if (!alien.active && Math.random() < 1 / ALIEN_SPAWN_TIME) {
+        alien.active = true;
+        alien.x = Math.random() < 0.5 ? 0 : canv.width;
+        alien.y = Math.random() * canv.height;
+        alien.xv = (ship.x > alien.x ? 1 : -1) * 2;
+        alien.yv = (ship.y > alien.y ? 1 : -1) * 1.5;
+        alien.timeLeft = ALIEN_DURATION;
+    }
+    // ==== Alien Ship Logic ====
+if (alien.active) {
+    // Move the alien
+    alien.x += alien.xv;
+    alien.y += alien.yv;
+    alien.visibleTime--;
+
+    // Wrap screen
+    if (alien.x < 0 - alien.r) alien.x = canv.width + alien.r;
+    else if (alien.x > canv.width + alien.r) alien.x = 0 - alien.r;
+    if (alien.y < 0 - alien.r) alien.y = canv.height + alien.r;
+    else if (alien.y > canv.height + alien.r) alien.y = 0 - alien.r;
+
+    // Handle explosion
+    if (alien.explodeTime > 0) {
+        alien.explodeTime--;
+        ctx.fillStyle = "orange";
+        ctx.beginPath();
+        ctx.arc(alien.x, alien.y, alien.r * 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // After explosion ends, deactivate alien
+        if (alien.explodeTime === 0) {
+            alien.active = false;
+            alien.destroyed = true;
+        }
+    } else {
+        // Draw alien if not exploding
+        ctx.strokeStyle = "lightgreen";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(alien.x, alien.y, alien.r, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+
+    // Fire at the player
+    if (
+        !exploding &&
+        !alien.destroyed &&
+        alien.explodeTime <= 0 &&
+        alien.shotCooldown <= 0 &&
+        alien.visibleTime > 0 &&
+    !ship.deadByAlien // 🚫 Stop firing if alien already killed the player
+    ) {
+        // Shoot toward player
+        let dx = ship.x - alien.x;
+        let dy = ship.y - alien.y;
+        let dist = Math.hypot(dx, dy);
+        let speed = 5;
+        alienBullets.push({
+             x: alien.x,
+             y: alien.y,
+             xv: (dx / dist) * speed,
+             yv: (dy / dist) * speed
+    });
+    alien.shotCooldown = FPS * 1.5;
+    } else {
+        alien.shotCooldown--;
+    }
+
+    // Remove alien after time runs out
+    if (alien.visibleTime <= 0 && alien.explodeTime <= 0) {
+        alien.active = false;
+    }
+
+    // Alien-bullet collision
+    for (let i = bullets.length - 1; i >= 0; i--) {
+        if (
+            !alien.destroyed &&
+            distBetweenPoints(bullets[i].x, bullets[i].y, alien.x, alien.y) < alien.r
+        ) {
+            bullets.splice(i, 1);
+            score += 100;
+            alien.explodeTime = FPS;
+            alien.destroyed = true;
+            break;
+        }
+    }
+
+    // Alien collides with player
+    if (
+        !exploding &&
+        !alien.destroyed &&
+        distBetweenPoints(ship.x, ship.y, alien.x, alien.y) < ship.r + alien.r
+    ) {
+        explodeShip();
+        alien.explodeTime = 0;
+        alien.destroyed = false;
+        alien.visibleTime = 1; // make it leave soon
+        alien.shotCooldown = FPS * 10; // effectively disables shooting
+    }
 
 }
+
+// ==== Move and draw alien bullets ====
+for (let i = alienBullets.length - 1; i >= 0; i--) {
+const b = alienBullets[i];
+
+    // Move
+    b.x += b.xv;
+    b.y += b.yv;
+
+    // Draw
+    ctx.fillStyle = "lightgreen";
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, SHIP_SIZE / 20, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Off screen
+    if (b.x < 0 || b.x > canv.width || b.y < 0 || b.y > canv.height) {
+        alienBullets.splice(i, 1);
+        continue;
+    }
+
+    // Hit ship
+    if (!exploding && distBetweenPoints(b.x, b.y, ship.x, ship.y) < ship.r) {
+        explodeShip();
+        ship.deadByAlien = true; // 🟢 FLAG IT
+        alienBullets.splice(i, 1);
+        break;
+    }
+}
+
+// If alien destroyed ship, begin retreat
+if (ship.deadByAlien && alien.visibleTime > 0) {
+    alien.xv = 3; // fly away quickly
+    alien.yv = -2;
+    alien.visibleTime = Math.min(alien.visibleTime, FPS * 3); // leave in 3s
+}
+
+
+    
+// Check if level is cleared
+if (roids.length === 0) {
+    level++;
+    roidCount += 1; // add more asteroids each level
+    ship = newShip(); // reset ship in center
+    createAsteroidBelt();
+
+    // Spawn alien at start of each level
+    alien = {
+        x: Math.random() * canv.width,
+        y: Math.random() * canv.height,
+        r: SHIP_SIZE * 0.5,
+        xv: (Math.random() - 0.5) * 2,
+        yv: (Math.random() - 0.5) * 2,
+        active: true,
+        visibleTime: FPS * 10,
+        shotCooldown: 0,
+        destroyed: false,
+        explodeTime: 0
+    };
+}
+
+}
+

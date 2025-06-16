@@ -8,8 +8,10 @@ function initAboutPage() {
             company: "InSightGlobal",
             dates: "Oct 2024 – Feb 2025",
             description: `
-          - Built accessible, dynamic UIs with React, JavaScript, HTML, and CSS.<br>
-          - Developed REST APIs with Node.js and PostgreSQL within the web app’s modularity.<br>
+          - Developed/Maintained dynamic web pages using React, JavaScript, Node.js, and ExpressJS, using PostgreSQL as its database.<br>
+          - Developed front-end features using React front-end with ASP.NET Core, which used an MS SQL database.<br>
+          - Built automated test suites using Jest (unit) and Cypress (end-to-end).<br>
+          - Utilized GitLab and participated in Agile sprints with Atlassian Jira.
         `
         },
         {
@@ -17,9 +19,11 @@ function initAboutPage() {
             company: "Cloud Wave",
             dates: "July 2022 – April 2024",
             description: `
-          - Developed scalable Azure-based ASP.NET Core applications.<br>
-          - Built multithreaded Python tools on Ubuntu for backend processing.<br>
-          - Integrated Azure Functions, IoT Hub, Event Hubs, and Cosmos DB.
+           - Enhanced an Azure-hosted C# ASP.NET Core application with a React JavaScript frontend.<br>
+           - Integrated third-party RESTful APIs in C#.NET Core.<br>
+           - Maintained/Designed Python applications on Linux OS with a PostgreSQL backend.<br>
+           - Worked collaboratively in an Agile environment using GitHub for version control and code reviews.<br>
+           - Developed on a Azure based real-time message processing systems.
         `
         },
         {
@@ -27,9 +31,11 @@ function initAboutPage() {
             company: "The JAAW Group",
             dates: "Sept 2021 – June 2022",
             description: `
-          - Created C# multithreaded services with Redis and RabbitMQ.<br>
-          - Designed and maintained a Blazor front-end site.<br>
-          - Worked on real-time message processing systems.
+           - Developed a Blazor web app with ASP.NET Core, C#, and SQL Server.<br>
+           - Created a .NET Core auditing tool to validate software on networked computers.<br>
+           - Implemented distributed messaging C# features with RabbitMQ and Redis.<br>
+           - Used Git for version control and followed Agile workflows.<br>
+           - Worked with Python scripts to automate file server maintenance-related tasks.
         `
         },
         {
@@ -37,9 +43,11 @@ function initAboutPage() {
             company: "SS&C",
             dates: "Nov 2018 – May 2021",
             description: `
-          - Enhanced ASP.NET MVC applications for financial services.<br>
-          - Migrated WCF services to REST APIs.<br>
-          - Delivered solutions in Agile teams with test automation.
+           - Enhanced ASP.NET MVC and SQL Server-based application.<br>
+           - Built RESTful APIs and backend services in C#.<br>
+           - Gained working knowledge of React and JavaScript.<br>
+           - Created Python/Selenium end-to-end automation tests.<br>
+           - Participated in Agile development cycles.
         `
         },
         {
@@ -57,12 +65,12 @@ function initAboutPage() {
             company: "Skills",
             dates: "Aug 2015 – Apr 2025",
             description: `
-          - Languages: C#, Python, JavaScript, SQL, HTML, CSS.<br>
-          - Frameworks/Libraries: React, Node.js, ASP.NET, Blazor, AngularJS, REST APIs, MVVM, WPF, WinForms.<br>
-          - Databases: PostgreSQL, SQL Server, Azure Cosmos DB.<br>
-          - Cloud/DevOps: Azure, Azure DevOps, GitHub Actions, CI/CD.<br>
-          - Tools: Git, Docker, Jira, Visual Studio, VS Code.<br>
-          - Testing/Other: Unit Testing, Integration Testing, Test Automation: Selenium, Jest, Cypress.<br>
+          - Languages:-> C#, Python, JavaScript, SQL, HTML, CSS.<br>
+          - Frameworks/Libraries:-> React, Node.js, ASP.NET, Blazor, AngularJS, REST APIs, MVVM, WPF, WinForms.<br>
+          - Databases:-> PostgreSQL, SQL Server, Azure Cosmos DB.<br>
+          - Cloud/DevOps:-> Azure, Azure DevOps, GitHub Actions, CI/CD.<br>
+          - Tools:-> Git, Docker, Jira, Visual Studio, VS Code.<br>
+          - Testing/Other:-> Unit Testing, Integration Testing, Test Automation: Selenium, Jest, Cypress.<br>
         `
         },
     ];

@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Resume Cart</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Rob Catapano | Software Engineer</title>
+    <title>Shopping Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-uWlTPUQu8lf5um7ikCQUZYxy5RvU79A3U5p6cYGo6VE8JYQ1vJQ/d3fHJ1Dx6X1vS0J4uobPV3dt8uEZXXI1Jg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,6 +84,131 @@
             width: 64px;
             height: 64px;
         }
+        #cart-icon {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+         padding: 2px 6px
+       }
+
+       #cart-icon i {
+        position: relative;
+       }
+
+        #cart-counter {
+        background: red;
+        color: white;
+        font-size: 14px;
+        padding: 2px 6px;
+        border-radius: 50%;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        }
+
+        @keyframes bounce {
+          0%   { transform: scale(1); }
+          30%  { transform: scale(1.2); }
+          50%  { transform: scale(0.95); }
+          70%  { transform: scale(1.05); }
+          100% { transform: scale(1); } 
+       }
+
+      /* Default cart icon styles (desktop/tablet) */
+      #cart-icon {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 28px;
+        color: #000;
+        cursor: pointer;
+        z-index: 1000;
+        background: white;
+        padding: 6px;
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+      }
+
+      /* Counter badge */
+      #cart-counter {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        padding: 2px 6px;
+      }
+
+      /* On smaller screens (mobile) */
+      @media (max-width: 768px) {
+      #cart-icon {
+          top: auto;
+          bottom: 20px;
+          right: 20px;
+          font-size: 36px;
+          padding: 10px;
+          background: rgba(255, 255, 255, 0.95);
+          border: 2px solid #ddd;
+          box-shadow: 0 0 10px rgba(0,0,0,0.25);
+      }
+
+      #cart-counter {
+          top: -10px;
+          right: -10px;
+          font-size: 14px;
+          padding: 3px 7px;
+        }
+      }
+
+      #cart-icon.bounce {
+      animation: bounce 0.4s ease;
+      }
+
+     .modal {
+       display: none;
+       position: fixed;
+       z-index: 2000;
+       left: 0; top: 0;
+       width: 100%; height: 100%;
+       background-color: rgba(0, 0, 0, 0.7);
+       justify-content: center;
+       align-items: center;
+    }
+
+    .modal-content {
+       background: #fff;
+       color: #000;
+       padding: 20px;
+       border-radius: 10px;
+       text-align: center;
+       position: relative;
+       max-width: 400px;
+       width: 80%;
+    }
+
+    .modal-content .file-icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    .modal-content .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .modal-content .close-btn:hover {
+      color: red;
+    }
     </style>
 </head>
 <body class="w3-light-grey">
@@ -98,32 +221,48 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
-                <li class="nav-item"><a class="nav-link" href="coverletter.html">Cover Letter</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/bobcatapano/" target="_blank">GitHub</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn</a></li>
                 <li class="nav-item"><a class="nav-link" href="spa.html">SPA Example</a></li>
+                <li class="nav-item"><a class="nav-link" href="Smart_City_V3.html">Smart City Example</a></li>
                 <li class="nav-item"><a class="nav-link" href="asteriods_game.html">Asteroids</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<h1>Download Resume's from your cart.</h1>
+<!-- Shopping Cart Icon with Counter -->
+<div id="cart-icon" onclick="openCheckout()">
+  <i class="fas fa-shopping-cart"></i>
+  <span id="cart-counter">0</span>
+</div>
+
+
+<h1>Download from your cart. It's free, prices shown are just a demo.</h1>
 
 <!-- Product Section -->
 <div class="product w3-card w3-white">
     <img src="img/html-icon.png" alt="HTML Resume" style="width:64px;height:64px;">
     <h2>Resume (HTML)</h2>
     <p>Price: $10 (example)</p>
-    <button onclick="addToCart('Resume (HTML)', 10, 'resume.docx', 'html')">Add to Cart</button>
+    <button onclick="viewItem('Resume (HTML)', 10, 'resume.html', 'html', 'A HTML version of the resume.')">View Item</button>
+    <button onclick="addToCart('Resume (HTML)', 10, 'resume.html', 'html')">Add to Cart</button>
 </div>
 
 <div class="product w3-card w3-white">
     <img src="img/icons8-pdf-100.png" alt="PDF Resume" style="width:64px;height:64px;">
     <h2>Resume (PDF)</h2>
     <p>Price: $15 (example)</p>
-    <button onclick="addToCart('Resume (PDF)', 15, 'resume.pdf', 'pdf')">Add to Cart</button>
+    <button onclick="viewItem('Resume (PDF)', 15, 'new_resume_pdf.pdf', 'pdf', 'A portable PDF version perfect for easy viewing and compatibility.')">View Item</button>
+    <button onclick="addToCart('Resume (PDF)', 15, 'new_resume_pdf.pdf', 'pdf')">Add to Cart</button>
 </div>
 
+<div class="product w3-card w3-white">
+    <img src="img/eden.png" alt="Forest Picture" style="width:64px;height:64px;">
+    <h2>Forest Picture</h2>
+    <p>Price: $25 (example)</p>
+    <button onclick="viewItem('Forest', 10, 'img/casual_picture.jpg', 'jpg', 'A picture of a forest.')">View Item</button>
+    <button onclick="addToCart('Forest', 25, 'img/casual_picture.jpg', 'jpg')">Add to Cart</button>
+</div>
 
 <!-- Cart Section -->
 <div class="cart w3-card w3-white" style="width: 600px">
@@ -148,9 +287,28 @@
     </div>
 </div>
 
+<!-- View Item Modal -->
+<div id="view-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeViewModal()">&times;</span>
+    <h2 id="view-title"></h2>
+    <img id="view-icon" class="file-icon" />
+    <p id="view-description"></p>
+    <p id="view-price"></p>
+    <button id="view-add-btn" onclick="">Add to Cart</button>
+  </div>
+</div>
+
+
 <script>
     let cart = [];
     let totalPrice = 0;
+    const fileIconMap = {
+  html: '/img/html-icon.png',
+  pdf: '/img/icons8-pdf-100.png',
+  jpg: '/img/eden.png'
+};
+
 
     function addToCart(name, price, file, type) {
         if (cart.find(item => item.type === type)) {
@@ -158,14 +316,18 @@
             return;
         }
 
-        if (cart.length >= 2) {
-            alert("Cart can only hold one PDF and one HTML resume.");
-            return;
-        }
+        //if (cart.length >= 2) {
+           // alert("Cart can only hold one PDF and one HTML resume.");
+           // return;
+        //}
 
         cart.push({ name, price, file, type });
         totalPrice += price;
         updateCart();
+        // Trigger bounce animation
+       const icon = document.getElementById('cart-icon');
+       icon.classList.add('bounce');
+       setTimeout(() => icon.classList.remove('bounce'), 400);
     }
 
     function removeFromCart(type) {
@@ -186,6 +348,8 @@
         if (cart.length === 0) {
             cartItems.innerHTML = "<li>No items in cart</li>";
             checkoutBtn.disabled = true;
+            document.getElementById("cart-counter").textContent = 0;
+
         } else {
             cart.forEach(item => {
                 const li = document.createElement("li");
@@ -194,6 +358,8 @@
                 cartItems.appendChild(li);
             });
             checkoutBtn.disabled = false;
+            document.getElementById("cart-counter").textContent = cart.length;
+
         }
 
         totalPriceElement.textContent = `Total: $${totalPrice}`;
@@ -241,6 +407,35 @@
         updateCart();
     }
 
+function viewItem(name, price, file, type, description) {
+  document.getElementById('view-title').textContent = name;
+  document.getElementById('view-description').textContent = description;
+  document.getElementById('view-price').textContent = `Price: $${price}`;
+  //document.getElementById('view-icon').src = type === 'pdf' ? '/img/icons8-pdf-100.png' : 'word-icon.png';
+ 
+   // Get file extension and lowercase it
+  const fileExt = file.split('.').pop().toLowerCase();
+  const icon = fileIconMap[fileExt] || '/img/icons8-file-100.png'; // default fallback
+  document.getElementById('view-icon').src = icon;
+
+  // Set up Add to Cart button dynamically
+  const addBtn = document.getElementById('view-add-btn');
+  if (cart.find(item => item.type === type)) {
+    addBtn.style.display = 'none';
+  } else {
+    addBtn.style.display = 'inline-block';
+    addBtn.onclick = () => {
+      addToCart(name, price, file, type);
+      closeViewModal();
+    };
+  }
+
+  document.getElementById('view-modal').style.display = 'flex';
+}
+
+function closeViewModal() {
+  document.getElementById('view-modal').style.display = 'none';
+}
 
 
 </script>

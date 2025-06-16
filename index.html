@@ -115,14 +115,38 @@
       transform: rotateY(180deg);
     }
 
+  .flip-wrapper,
+  .flip-container,
+  .flipper,
+  .front,
+  .back {
+  width: 100%;
+  max-width: 100%;
+}
+
+.front, .back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h2 {
+  margin-bottom: 0.5rem;
+}
+
+.section {
+  margin-top: 0;
+}
+
+
     /* Circular Image */
-    .round-image {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  </style>
+.round-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 50%; /* if you want it round */
+  margin: 0 auto;
+}>
 </head>
 <style>
   html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
@@ -138,10 +162,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#about" onclick="showAbout()">About Me</a></li>
-        <li class="nav-item"><a class="nav-link" href="coverletter.html">Cover Letter</a></li>
         <li class="nav-item"><a class="nav-link" onclick="showModal()">Career Goals</a></li>
         <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
         <li class="nav-item"><a class="nav-link" href="spa.html">SPA Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="Smart_City_V3.html">Smart City Example</a></li>
         <li class="nav-item"><a class="nav-link" href="asteriods_game.html">Asteroids</a></li>
       </ul>
     </div>
@@ -219,7 +243,7 @@
             <div class="skill-container">
               <div class="skill-label">JavaScript</div>
               <div class="w3-light-grey w3-round-xlarge w3-small">
-                <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:90%">90%</div>
+                <div class="w3-container w3-center w3-round-xlarge w3-indigo" style="width:94%">94%</div>
               </div>
             </div>
             <br>
@@ -241,20 +265,20 @@
                 <tbody>
                 <tr>
                   <td>Joe Ward</td>
-                  <td>President of JAAW</td>
-                  <td>jward<br>@thejaawgroup<br>.com</td>
+                  <td>President of The JAAW Group</td>
+                  <td>jward@<br>thejaawgroup<br>.com</td>
                   <td>801-866-9248</td>
                 </tr>
                 <tr>
                   <td>Matt Beck</td>
                   <td>Former QA Manager</td>
-                  <td>beck.matt<br>@gmail.com</td>
+                  <td>beck.matt@<br>gmail.com</td>
                   <td>206-660-9859</td>
                 </tr>
                 <tr>
                   <td>Jeremy Heiner</td>
                   <td>Former Software Developer</td>
-                  <td>jeremyheiner<br>@gmail.com</td>
+                  <td>jeremyheiner@<br>gmail.com</td>
                   <td>N/A</td>
                 </tr>
                 </tbody>
@@ -271,43 +295,23 @@
           <section class="w3-container">
             <div class="w3-card w3-white w3-margin-bottom about-card">
               <span class="close-button" onclick="hideAbout()">X</span>
-              <header>
-                <h1>Thank you for reading this!</h1>
-                <h2>About Me,</h2>
-              </header>
-              <main>
-                <section>
-                  <article>
-                    <div class="section">
-                      <h1>Summary</h1>
-                      <p>Software Engineer with 5+ years of experience delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, Python, SQL, HTML, CSS, and Azure.</p>
-                    </div>
+    
+             <header style="margin-bottom: 0.5rem;">
+  <h2>About Me,</h2>
+</header>
+<main>
+  <section>
+    <article>
+      <div class="section" style="margin-top: 0;">
+        <p><strong>Software Engineer with 5+ years of experience</strong> delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, TypeScript, Python, SQL, HTML, CSS, and Azure.</p>
+        <p style="text-align: center;"><strong>(something more personal)</strong></p>
+        <p><strong>Music has been a constant in my life.</strong> I play both piano and guitar, I like George Winston’s piano compositions and artists such as Johnny Cash and Phish.</p>
+        <p><strong>Outside of music,</strong> some of my favorite movies include <em>"This Is Spinal Tap"</em>, <em>"Weekend at Bernie’s"</em>, and <em>"The Adventures of Baron Munchausen"</em>. The books I enjoy most are <em>"The Hobbit"</em>, <em>"A Connecticut Yankee in King Arthur’s Court"</em>, and <em>"The Feynman Lectures on Physics"</em>.</p>
+      </div>
+    </article>
+  </section>
+</main>
 
-                    <br>
-
-                    <div class="section">
-                      <h2>Skills & Tools</h2>
-
-                      <p><strong>Languages:</strong> C#, JavaScript, TypeScript, Python, SQL, HTML, CSS</p>
-                      <p><strong>Frameworks:</strong> ASP.NET, React, Node.js, Express, Blazor, MVC, MVVM</p>
-                      <p><strong>Tools:</strong> Docker, Git (GitHub, GitLab), Azure DevOps, Visual Studio, VS Code</p>
-                      <p><strong>Testing:</strong> Selenium, Jest, Cypress</p>
-                      <p><strong>Databases:</strong> MS SQL Server, PostgreSQL, Azure Cosmos DB</p>
-                      <p><strong>Cloud:</strong> Microsoft Azure, AWS (basic knowledge), SaaS</p>
-                      <p><strong>Other:</strong> CI/CD pipelines, RESTful APIs, WinForms, WPF</p>
-                    </div>
-                    <p>
-                      I’m a software engineer who enjoys solving complex problems with clean, reliable code. Over the years, I’ve worked across the stack—from building C# automation tools for desktop and web testing, to designing scalable ASP.NET Core back-end systems, to working with React and Blazor on the front end.
-                    </p>
-                    <p>
-                      I’ve built multithreaded applications, automated deployment systems, and test frameworks using WPF, WinForms, and XML. I’ve worked with Azure services like Functions, Cosmos DB, and Event Hubs, and I’m comfortable with messaging systems like RabbitMQ and caching layers like Redis.
-                    </p>
-                    <p>
-                      More importantly, I am a geek :)
-                    </p>
-                  </article>
-                </section>
-              </main>
             </div>
           </section>
         </div>
@@ -321,7 +325,7 @@
             <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2024 - Feb 2025</h6>
             <ul>
               <li>Developed dynamic pages using React JavaScript, Node.js, and Express, backed by PostgreSQL.</li>
-              <li>Designed and implemented RESTful APIs for scalable distributed systems.</li>
+              <li>Developed front-end features using React front-end with ASP.NET Core, which used an MS SQL database</li>
               <li>Built automated test suites using Jest (unit) and Cypress (end-to-end).</li>
               <li>Utilized GitLab and participated in Agile sprints with Atlassian Jira.</li>
             </ul>
@@ -334,17 +338,18 @@
               <li>Integrated third-party RESTful APIs in C#.NET Core.</li>
               <li>Maintained/Designed Python applications on Linux OS with a PostgreSQL backend.</li>
               <li>Worked collaboratively in an Agile environment using GitHub for version control and code reviews.</li>
+              <li>Developed on a Azure based real-time message processing systems.</li>
             </ul>
           </div>
           <div class="w3-container">
-            <h5 class="w3-opacity"><b>JAAW</b></h5>
+            <h5 class="w3-opacity"><b>The JAAW Group</b></h5>
             <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2021 - Jun 2022</h6>
             <ul>
               <li>Developed a Blazor web app with ASP.NET Core, C#, and SQL Server.</li>
               <li>Created a .NET Core auditing tool to validate software on networked computers.</li>
               <li>Implemented distributed messaging C# features with RabbitMQ and Redis.</li>
               <li>Used Git for version control and followed Agile workflows.</li>
-              <li>Worked with Python scripts to automate file server maintenance-related tasks</li>
+              <li>Worked with Python scripts to automate file server maintenance-related tasks.</li>
             </ul>
           </div>
           <div class="w3-container">
@@ -415,7 +420,7 @@
     const nowTime = new Date();
     const dateTime = nowTime.toLocaleDateString();
     const myTime = nowTime.toLocaleTimeString();
-    document.getElementById('current-date').textContent = `As of this Date and Time: ${dateTime} ${myTime}`;
+   // document.getElementById('current-date').textContent = `As of this Date and Time: ${dateTime} ${myTime}`;
   }
   updateDateTime();
   setInterval(updateDateTime, 1000);
@@ -459,4 +464,5 @@
 
 </body>
 </html>
+
 

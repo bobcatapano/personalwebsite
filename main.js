@@ -35,25 +35,60 @@ function loadSectionContent(section) {
 	switch (section) {
 		case 'home':
 			sidebarContent.innerHTML = `
-		<section id="home" class="section bg-light text-center details">
-		  <div class="container details">
-			<h1>Home Page</h1>
-			<p class="lead">Full-Stack Software Engineer | C# | Python | JavaScript</p>
-			<p>Deciding what to place here.</p>
-			<br>
-		  </div>
-		</section>
+  		<section id="home" class="section bg-light text-center py-4 details">
+  		<div class="container details">
+    	<section class="pt-1">
+      	<h2 class="h4 mb-2">Technical Skills</h2>
+      	<ul class="text-start d-inline-block mb-0">
+        <li><strong>Languages:</strong> Python, C#, JavaScript, SQL, C/C++ (familiar), Java (familiar), Rust (basic understanding), Go (basic understanding)</li>
+        <li><strong>Frameworks & Libraries:</strong> React, front-end development; familiar with geospatial UI/UX and metric visualization dashboards</li>
+        <li><strong>Tools & Platforms:</strong> Git, GitLab, Azure (Functions, Event Hub, Routing), Docker, Windows & Linux environments, Kubernetes (familiar), Jenkins (familiar)</li>
+        <li><strong>Other:</strong> Task estimation, team leadership, software testing, validation & verification (V&amp;V), real-time / time-critical processing pipelines, Agile development</li>
+      	</ul>
+    	</section>
 		  `;
 				break;
 			case 'projects':
 				sidebarContent.innerHTML = `
 			<section id="projects" class="section bg-light text-center details">
 			  <div class="container details">
-				<h1>Projects</h1>
-				<p class="lead">Deciding what to list</p>
-				<p>place holder</p>
-				<br>
-			  </div>
+				<section id="projects" class="section bg-white text-center py-4">
+  				<div class="container">
+    			<h2 class="mb-4">GitHub Projects</h2>
+    			<div class="row justify-content-center">
+
+      		<div class="col-md-4 col-sm-6 mb-4">
+        		<div class="card h-100 shadow-sm" style="max-width: 95%; margin: auto;">
+          		<div class="card-body">
+            	<h5 class="card-title">ConfigDocker</h5>
+            	<p class="card-text">Demonstrates how to configure Docker services by modifying YAML files. Useful for infrastructure setup and DevOps practices.</p>
+            	<a href="https://github.com/bobcatapano/ConfigDockerServices" class="btn btn-outline-primary" target="_blank">View on GitHub</a>
+          	</div>
+        	</div>
+      		</div>
+
+      		<div class="col-md-4 col-sm-6 mb-4">
+        	<div class="card h-100 shadow-sm" style="max-width: 95%; margin: auto;">
+          	<div class="card-body">
+            <h5 class="card-title">Automation</h5>
+            <p class="card-text">A universal desktop automation tool that records user actions and stores them as XML for later playback. Useful for repetitive task automation.</p>
+            <a href="https://github.com/bobcatapano/GhostShadowAutomation" class="btn btn-outline-primary" target="_blank">View on GitHub</a>
+          	</div>
+        	</div>
+      		</div>
+
+      		<div class="col-md-4 col-sm-6 mb-4">
+        	<div class="card h-100 shadow-sm" style="max-width: 95%; margin: auto;">
+          	<div class="card-body">
+            <h5 class="card-title">mauiEncryptiopn</h5>
+            <p class="card-text">Encrypts a file on your smart phone and sends the attached file as an email. Written using MAUI.NET</p>
+            <a href="https://github.com/bobcatapano/mauiEncroyProject" class="btn btn-outline-primary" target="_blank">View on GitHub</a>
+          	</div>
+        	</div>
+      		</div>
+
+    		</div>
+  			</div>
 			</section>
 		  `;
 				break;
@@ -61,24 +96,98 @@ function loadSectionContent(section) {
 				sidebarContent.innerHTML = `
 			<section id="about" class="section bg-light text-center details">
 			  <div class="container details">
-				<h1>About</h1>
-				<p class="lead">Deciding what to list</p>
-				<p>place holder</p>
+				 <p><strong>Software Engineer with 5+ years of experience</strong> delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, TypeScript, Python, SQL, HTML, CSS, and Azure.</p>
+                 <p><strong>Music has been a constant in my life.</strong> I play both piano and guitar, I like George Winston’s piano compositions and artists such as Johnny Cash and Phish.</p>
+                 <p><strong>Outside of music,</strong> some of my favorite movies include <em>This Is Spinal Tap</em>, <em>Weekend at Bernie’s</em>, and <em>The Adventures of Baron Munchausen</em>. The books I enjoy most are <em>The Hobbit</em>, <em>A Connecticut Yankee in King Arthur’s Court</em>, and <em>The Feynman Lectures on Physics</em>.</p>
+              </div>
 				<br>
 			  </div>
 			</section>
 		  `;
 				break;
-			case 'contact':
+			case 'experience':
 				sidebarContent.innerHTML = `
-			<section id="contact" class="section bg-light text-center details">
-				  <div class="container details">
-					<h1>Contact</h1>
-					<p class="lead">Deciding what to list</p>
-					<p>place holder</p>
-					<br>
-				  </div>
-			</section>
+			<section id="experiecnce" class="section bg-light py-5 text-center details">
+  				<div class="container details">
+    			<div class="section">
+
+ 			<div class="job">
+    		<p class="job-title">
+      		Insight Global (Contract) — Software Engineer 
+    		</p>
+			<span class="date">Oct 2024 – Feb 2025</span>
+    		<ul>
+      		<li>Built accessible, dynamic UIs with React, JavaScript, HTML, and CSS.</li>
+      		<li>Developed REST APIs with Node.js and PostgreSQL within the web app’s modularity.</li>
+    		</ul>
+  			</div>
+
+  			<div class="job">
+    		<p class="job-title">
+      		Cloud Wave / Sensato — Software Engineer 
+			</p>
+			<span class="date">Jul 2022 – Apr 2024</span>
+			<ul>
+				<li>Delivered full-stack apps using ASP.NET Core and React in a cybersecurity setting.</li>
+				<li>Created/maintained Python applications for network monitoring of hospital infrastructure to save hours of manual observation of security risks.</li>
+				<li>Worked with cloud-native apps such as Azure Functions and Cosmos DB.</li>
+				<li>Integrated external REST APIs and led mentoring efforts for junior developers.</li>
+				</ul>
+			</div>
+
+			<div class="job">
+				<p class="job-title">
+				The JAAW Group — Software Developer 
+				</p>
+				<span class="date">Sep 2021 – Jun 2022</span>
+				<ul>
+				<li>Built a Blazor web portal with ASP.NET Core and SQL Server to ensure consistent code reviews and time to check other code requirements.</li>
+				<li>Wrote Python scripts to automate IT and data tasks to save hours of manual steps.</li>
+				<li>Led QA test automation for internal tools to save days of testing time.</li>
+				<li>Designed Azure DevOps CI/CD pipelines using YAML.</li>
+				</ul>
+			</div>
+
+			<div class="job">
+				<p class="job-title">
+				SS&amp;C Technologies — Software Developer 
+				</p>
+				<span class="date">Nov 2018 – May 2021</span>
+				<ul>
+				<li>Contributed to an ASP.NET MVC application using C#, React, and SQL Server.</li>
+				<li>Developed RESTful APIs and contributed to modular service architecture.</li>
+				<li>Built automated test tools in Python for regression testing to save days of manual testing time.</li>
+				<li>Enhanced a C# WPF app by implementing MVVM for better maintainability.</li>
+				</ul>
+			</div>
+
+			<div class="job">
+				<p class="job-title">
+				Collabra Solutions (Contract) — Software Developer in Test 
+				</p>
+				<span class="date">Jan 2018 – Oct 2018</span>
+				<ul>
+				<li>Created a WinForms-based test automation tool in C# to save days of repetitive manual testing.</li>
+				<li>Developed an AngularJS dashboard to visualize testing metrics to show how testing is progressing to management.</li>
+				<li>Championed QA automation practices to accelerate test cycles.</li>
+				</ul>
+			</div>
+
+			<div class="job">
+				<p class="job-title">
+				Motorola Solutions — Software Engineer in Test 
+				</p>
+				<span class="date">Sep 2015 – Dec 2017</span>
+				<ul>
+				<li>Built a C# WPF MVVM application for remote software deployment, cutting delivery time and manual errors.</li>
+				<li>Contributed to internal testing tools and automation infrastructure.</li>
+				</ul>
+			</div>
+
+			</div>
+
+  				</div>
+			</section>		
 		  `;
 				break;
 
@@ -86,7 +195,6 @@ function loadSectionContent(section) {
 			sidebarContent.innerHTML = `<p>Section not found.</p>`;
 	}
 }
-
 
 function loadDashboardPage() {
 	const contentDiv = document.getElementById('content');
@@ -158,7 +266,7 @@ function loadSidebarPage() {
                       <a class="nav-link" href="#" onclick="loadSectionContent('home')"><i class="bi bi-house-door"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#" onclick="loadSectionContent('projects')"><i class="bi bi-briefcase"></i> Projects</a>
+                      <a class="nav-link" href="#" onclick="loadSectionContent('projects')"><i class="bi bi-github"></i> Projects</a>
                     </li>
                   </ul>
                 </div>
@@ -178,7 +286,7 @@ function loadSidebarPage() {
                       <a class="nav-link" href="#" onclick="loadSectionContent('about')"><i class="bi bi-person"></i> About</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#" onclick="loadSectionContent('contact')"><i class="bi bi-envelope"></i> Contact</a>
+                      <a class="nav-link" href="#" onclick="loadSectionContent('experience')"><i class="bi bi-briefcase"></i> Experience</a>
                     </li>
                   </ul>
                 </div>
@@ -190,8 +298,8 @@ function loadSidebarPage() {
         <!-- Main Content Area -->
         <main class="col-md-9 col-lg-10 px-4 pt-4">
           <div id="sidebar-content">
-            <h1 class="h2">Single Page Section</h1>
-            <p class="lead">Click a link on the left to load content here.</p>
+            <h1 class="h2">WebPage based Single Page Application Resume</h1>
+            <p class="lead">This is still underconstruction. Click a link on the left.</p>
           </div>
         </main>
 
