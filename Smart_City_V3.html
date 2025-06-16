@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart City Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      height: 100%;
+    }
+    canvas {
+      width: 100%;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: bold;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ffd700 !important;
+    }
+    .alert-area {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Smart City Example - Click on any sensors on the map</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
+        <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="spa.html">SPA Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="asteriods_game.html">Asteroids</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Bootstrap Grid Layout -->
+  <div class="container-fluid" style="height: calc(100vh - 56px);">
+    <div class="row h-100">
+      <div class="col-md-8" id="map"></div>
+      <div class="col-md-4 bg-light p-4">
+        <h2 id="sensor-title" class="h5 mb-3">Sensor A - Air Quality</h2>
+        <canvas id="chart"></canvas>
+        <div id="alert-container" class="alert-area"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('chart').getContext('2d');
+    const chartWidth = ctx.canvas.width;
+    const chartHeight = ctx.canvas.height;
+    const alertContainer = document.getElementById('alert-container');
+
+    let sensorData = {
+      "Sensor A": [],
+      "Sensor B": [],
+      "Sensor C": [],
+      "Sensor D": [],
+      "Sensor E": []
+    };
+
+    let currentSensor = "Sensor A";
+
+    function generateReading() {
+      return Math.floor(50 + Math.random() * 100);
+    }
+
+    function updateData() {
+      for (let key in sensorData) {
+        const value = generateReading();
+        sensorData[key].push(value);
+        if (sensorData[key].length > 20) {
+          sensorData[key].shift();
+        }
+
+        if (value >= 130) {
+          showAlert(key, value);
+        }
+      }
+    }
+
+    function drawChart(sensorName) {
+      ctx.clearRect(0, 0, chartWidth, chartHeight);
+      ctx.beginPath();
+      const data = sensorData[sensorName];
+      const stepX = chartWidth / (data.length - 1 || 1);
+
+      const lastReading = data[data.length - 1] || 0;
+      const color = getAQColor(lastReading);
+
+      data.forEach((val, i) => {
+        const x = i * stepX;
+        const y = chartHeight - (val / 150) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    function getAQColor(val) {
+      if (val < 75) return 'green';
+      else if (val < 120) return 'orange';
+      else return 'red';
+    }
+
+    function updateSensorTitle(name) {
+      document.getElementById("sensor-title").textContent = `${name} - Air Quality`;
+    }
+
+    function showAlert(sensor, value) {
+      const alert = document.createElement('div');
+      alert.className = 'alert alert-danger';
+      alert.textContent = `${sensor} ALERT: High air quality reading (${value})!`;
+      alertContainer.appendChild(alert);
+
+      setTimeout(() => {
+        alert.remove();
+      }, 4000);
+    }
+
+    setInterval(() => {
+      updateData();
+      drawChart(currentSensor);
+    }, 2000);
+
+    // Initialize Leaflet map
+    const map = L.map("map").setView([41.8781, -87.6298], 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const markers = [
+      { lat: 41.88, lng: -87.65, name: "Sensor A" },
+      { lat: 41.89, lng: -87.63, name: "Sensor B" },
+      { lat: 41.87, lng: -87.61, name: "Sensor C" },
+      { lat: 41.86, lng: -87.66, name: "Sensor D" },
+      { lat: 41.90, lng: -87.64, name: "Sensor E" }
+    ];
+
+    markers.forEach(m => {
+      const marker = L.marker([m.lat, m.lng]).addTo(map).bindPopup(m.name);
+      marker.on("click", () => {
+        currentSensor = m.name;
+        updateSensorTitle(m.name);
+        drawChart(m.name);
+      });
+    });
+
+    // Init
+    for (let i = 0; i < 10; i++) updateData();
+    drawChart(currentSensor);
+  </script>
+</body>
+</html>
