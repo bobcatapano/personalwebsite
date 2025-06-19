@@ -57,10 +57,10 @@
     }
 
     .flip-button {
-    padding: 2px 4px;
-    font-size: 16px;
-    border-radius: 8px;
-  }
+      padding: 2px 4px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
 
     .back {
       transform: rotateY(180deg);
@@ -115,42 +115,49 @@
       transform: rotateY(180deg);
     }
 
-  .flip-wrapper,
-  .flip-container,
-  .flipper,
-  .front,
-  .back {
-  width: 100%;
-  max-width: 100%;
-}
+    .flip-wrapper,
+    .flip-container,
+    .flipper,
+    .front,
+    .back {
+      width: 100%;
+      max-width: 100%;
+    }
 
-.front, .back {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .front, .back {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-header h2 {
-  margin-bottom: 0.5rem;
-}
+    header h2 {
+      margin-bottom: 0.5rem;
+    }
 
-.section {
-  margin-top: 0;
-}
+    .section {
+      margin-top: 0;
+    }
 
+    .round-image-wrapper {
+      width: 100%;
+      max-width: 250px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+    }
 
-    /* Circular Image */
-.round-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 50%; /* if you want it round */
-  margin: 0 auto;
-}>
-</head>
-<style>
-  html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-</style>
+    .round-image {
+      width: 100%;       /* same width and height */
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    >
+    </head>
+    <style>
+     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+  </style>
 <body class="w3-light-grey">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -175,32 +182,32 @@ header h2 {
     </div>
   </div>
 </nav>
-        
-  <!-- Modal -->
-  <div class="modal fade" id="goalModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
 
-        <div class="modal-header justify-content-center">
-          <h5 class="modal-title text-center w-100">Career Goals</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="goalModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-        <div class="modal-body">
-          <main style="max-width: 1000px; margin: auto;">
-            <section style="background-color: white;padding: 7px;border-radius: 8px;">
-              <ol class="fade-in-list">
-                <li>Continue as a Full Stack Software Developer</li>
-                <li>Build a Portfolio and Personal Brand</li>
-                <li>Speak at conferences or tech meetups</li>
-              </ol>
-            </section>
-          </main>
-        </div>
-
+      <div class="modal-header justify-content-center">
+        <h5 class="modal-title text-center w-100">Career Goals</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
+      <div class="modal-body">
+        <main style="max-width: 1000px; margin: auto;">
+          <section style="background-color: white;padding: 7px;border-radius: 8px;">
+            <ol class="fade-in-list">
+              <li>Continue as a Full Stack Software Developer</li>
+              <li>Build a Portfolio and Personal Brand</li>
+              <li>Speak at conferences or tech meetups</li>
+            </ol>
+          </section>
+        </main>
+      </div>
+
     </div>
   </div>
+</div>
 
 <div class="container mt-5">
   <div class="w3-content w3-margin-top" style="max-width:1400px;">
@@ -211,17 +218,21 @@ header h2 {
             <div class="flip-container" id="flipContainer">
               <div class="flipper" id="flipperCard">
                 <div class="front">
-                  <img class="round-image" src="/img/main_picture.jpg" alt="Front Image">
+                  <div class="round-image-wrapper">
+                    <img class="round-image" src="/img/main_picture.jpg" alt="Front Image">
+                  </div>
                 </div>
                 <div class="back">
-                  <img class="round-image" src="/img/casual_picture.jpg" alt="Back Image">
+                  <div class="round-image-wrapper">
+                    <img class="round-image" src="/img/casual_picture.jpg" alt="Front Image">
+                  </div>
+
                 </div>
               </div>
             </div>
             <button class="btn btn-primary flip-button" onclick="flipCard()">Flip Image</button>
           </div>
-      
-          <br>
+
           <div id="contact/skills" class="w3-container">
             <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-indigo"></i>Software Developer</p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-indigo"></i>Layton, UT</p>
@@ -294,31 +305,31 @@ header h2 {
       </div>
       <div class="w3-twothird">
         <div class="w3-container w3-card w3-white">
-        <div id="about-section" class="about-container" style="display: none;">
+          <div id="about-section" class="about-container" style="display: none;">
 
-          <section class="w3-container">
-            <div class="w3-card w3-white w3-margin-bottom about-card">
-              <span class="close-button" onclick="hideAbout()">X</span>
-    
-             <header style="margin-bottom: 0.5rem;">
-  <h2>About Me,</h2>
-</header>
-<main>
-  <section>
-    <article>
-      <div class="section" style="margin-top: 0;">
-        <p><strong>Software Engineer with 5+ years of experience</strong> delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, TypeScript, Python, SQL, HTML, CSS, and Azure.</p>
-        <p style="text-align: center;"><strong>(something more personal)</strong></p>
-        <p><strong>Music has been a constant in my life.</strong> I play both piano and guitar, I like George Winston’s piano compositions and artists such as Johnny Cash and Phish.</p>
-        <p><strong>Outside of music,</strong> some of my favorite movies include <em>"This Is Spinal Tap"</em>, <em>"Weekend at Bernie’s"</em>, and <em>"The Adventures of Baron Munchausen"</em>. The books I enjoy most are <em>"The Hobbit"</em>, <em>"A Connecticut Yankee in King Arthur’s Court"</em>, and <em>"The Feynman Lectures on Physics"</em>.</p>
-      </div>
-    </article>
-  </section>
-</main>
+            <section class="w3-container">
+              <div class="w3-card w3-white w3-margin-bottom about-card">
+                <span class="close-button" onclick="hideAbout()">X</span>
 
-            </div>
-          </section>
-        </div>
+                <header style="margin-bottom: 0.5rem;">
+                  <h2>About Me,</h2>
+                </header>
+                <main>
+                  <section>
+                    <article>
+                      <div class="section" style="margin-top: 0;">
+                        <p><strong>Software Engineer with 5+ years of experience</strong> delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, TypeScript, Python, SQL, HTML, CSS, and Azure.</p>
+                        <p style="text-align: center;"><strong>(something more personal)</strong></p>
+                        <p><strong>Music has been a constant in my life.</strong> I play both piano and guitar, I like George Winston’s piano compositions and artists such as Johnny Cash and Phish.</p>
+                        <p><strong>Outside of music,</strong> some of my favorite movies include <em>"This Is Spinal Tap"</em>, <em>"Weekend at Bernie’s"</em>, and <em>"The Adventures of Baron Munchausen"</em>. The books I enjoy most are <em>"The Hobbit"</em>, <em>"A Connecticut Yankee in King Arthur’s Court"</em>, and <em>"The Feynman Lectures on Physics"</em>.</p>
+                      </div>
+                    </article>
+                  </section>
+                </main>
+
+              </div>
+            </section>
+          </div>
         </div>
 
         <div class="w3-container w3-card w3-white w3-margin-bottom">
@@ -417,33 +428,33 @@ header h2 {
       showAbout();
     }
   });
-  </script>
-  <script>
-    function showModal() {
-      const modal = new bootstrap.Modal(document.getElementById('goalModal'));
-      modal.show();
-    }
+</script>
+<script>
+  function showModal() {
+    const modal = new bootstrap.Modal(document.getElementById('goalModal'));
+    modal.show();
+  }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const modalElement = document.getElementById('goalModal');
+  document.addEventListener('DOMContentLoaded', () => {
+    const modalElement = document.getElementById('goalModal');
 
-      modalElement.addEventListener('shown.bs.modal', () => {
-        const items = modalElement.querySelectorAll('.fade-in-list li');
-        items.forEach((item, index) => {
-          item.classList.remove('visible'); // reset first
-          setTimeout(() => {
-            item.classList.add('visible');
-          }, index * 600);
-        });
-      });
-
-      modalElement.addEventListener('hidden.bs.modal', () => {
-        const items = modalElement.querySelectorAll('.fade-in-list li');
-        items.forEach(item => item.classList.remove('visible'));
+    modalElement.addEventListener('shown.bs.modal', () => {
+      const items = modalElement.querySelectorAll('.fade-in-list li');
+      items.forEach((item, index) => {
+        item.classList.remove('visible'); // reset first
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, index * 600);
       });
     });
-  </script>
-  <script>
+
+    modalElement.addEventListener('hidden.bs.modal', () => {
+      const items = modalElement.querySelectorAll('.fade-in-list li');
+      items.forEach(item => item.classList.remove('visible'));
+    });
+  });
+</script>
+<script>
   function flipCard() {
     //document.getElementById('flipperCard').classList.toggle('flipped');
     document.querySelector('.flip-container').classList.toggle('flipped');
