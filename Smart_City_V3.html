@@ -51,6 +51,7 @@
         <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
         <li class="nav-item"><a class="nav-link" href="new_resume_html.html">OnLine Resume</a></li>
+        <li class="nav-item"><a class="nav-link" href="CliftonAssessment.html">CliftonResults</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/bobcatapano/" target="_blank">GitHub</a></li>
         <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn</a></li>
         <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
@@ -68,11 +69,22 @@
       <div class="col-md-4 bg-light p-4">
         <h2 id="sensor-title" class="h5 mb-3">Sensor A - Air Quality</h2>
         <canvas id="chart"></canvas>
+             <div id="current-date"></div>
         <div id="alert-container" class="alert-area"></div>
+     
       </div>
     </div>
   </div>
-
+  <script>
+  function updateDateTime() {
+    const nowTime = new Date();
+    const dateTime = nowTime.toLocaleDateString();
+    const myTime = nowTime.toLocaleTimeString();
+    document.getElementById('current-date').textContent = `Date and Time: ${dateTime} ${myTime}`;
+  }
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+  </script>
   <script>
     const ctx = document.getElementById('chart').getContext('2d');
     const chartWidth = ctx.canvas.width;
@@ -139,9 +151,11 @@
     }
 
     function showAlert(sensor, value) {
+      const nowTime = new Date();
+      const myTime = nowTime.toLocaleTimeString();
       const alert = document.createElement('div');
       alert.className = 'alert alert-danger';
-      alert.textContent = `${sensor} ALERT: High air quality reading (${value})!`;
+      alert.textContent = `${myTime} ${sensor} ALERT: High air quality reading (${value})!`;
       alertContainer.appendChild(alert);
 
       setTimeout(() => {
@@ -177,7 +191,6 @@
       });
     });
 
-    // Init
     for (let i = 0; i < 10; i++) updateData();
     drawChart(currentSensor);
   </script>

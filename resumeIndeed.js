@@ -9,7 +9,7 @@ function initAboutPage() {
             dates: "Oct 2024 – Feb 2025",
             description: `
           - Developed/Maintained dynamic web pages using React, JavaScript, Node.js, and ExpressJS, using PostgreSQL as its database.<br>
-          - Developed front-end features using React front-end with ASP.NET Core, which used an MS SQL database.<br>
+          - Brought prior full-stack perspective (including C#/.NET background) to UI component design, focusing on clarity, reusability, and integration readiness.
           - Built automated test suites using Jest (unit) and Cypress (end-to-end).<br>
           - Utilized GitLab and participated in Agile sprints with Atlassian Jira.
         `

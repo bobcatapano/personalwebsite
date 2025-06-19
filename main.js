@@ -40,10 +40,12 @@ function loadSectionContent(section) {
     	<section class="pt-1">
       	<h2 class="h4 mb-2">Technical Skills</h2>
       	<ul class="text-start d-inline-block mb-0">
-        <li><strong>Languages:</strong> Python, C#, JavaScript, SQL, C/C++ (familiar), Java (familiar), Rust (basic understanding), Go (basic understanding)</li>
-        <li><strong>Frameworks & Libraries:</strong> React, front-end development; familiar with geospatial UI/UX and metric visualization dashboards</li>
-        <li><strong>Tools & Platforms:</strong> Git, GitLab, Azure (Functions, Event Hub, Routing), Docker, Windows & Linux environments, Kubernetes (familiar), Jenkins (familiar)</li>
-        <li><strong>Other:</strong> Task estimation, team leadership, software testing, validation & verification (V&amp;V), real-time / time-critical processing pipelines, Agile development</li>
+        <li><strong>Languages:</strong> C#, Python, JavaScript, SQL, HTML, CSS</li>
+        <li><strong>Frameworks/Libraries:</strong> React, Node.js, ASP.NET, Blazor, AngularJS, REST APIs, MVVM, WPF, WinForms</li>
+        <li><strong>Databases:</strong> PostgreSQL, SQL Server, Azure Cosmos DB</li>
+        <li><strong>Cloud/DevOps:</strong> Azure, Azure DevOps, GitHub Actions, CI/CD</li>
+        <li><strong>Tools:</strong> Git, Docker, Jira, Visual Studio, VS Code</li>
+        <li><strong>Testing/Other:</strong> Unit Testing, Integration Testing, Test Automation: Selenium, Jest, Cypress</li>
       	</ul>
     	</section>
 		  `;
@@ -117,8 +119,10 @@ function loadSectionContent(section) {
     		</p>
 			<span class="date">Oct 2024 – Feb 2025</span>
     		<ul>
-      		<li>Built accessible, dynamic UIs with React, JavaScript, HTML, and CSS.</li>
-      		<li>Developed REST APIs with Node.js and PostgreSQL within the web app’s modularity.</li>
+              <li>Developed dynamic pages using React JavaScript, Node.js, and Express, backed by PostgreSQL.</li>
+              <li>Brought prior full-stack perspective (including C#/.NET background) to UI component design, focusing on clarity, reusability, and integration readiness.</li>
+              <li>Built automated test suites using Jest (unit) and Cypress (end-to-end).</li>
+              <li>Utilized GitLab and participated in Agile sprints with Atlassian Jira.</li>
     		</ul>
   			</div>
 

@@ -163,6 +163,7 @@ header h2 {
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#about" onclick="showAbout()">About Me</a></li>
         <li class="nav-item"><a class="nav-link" onclick="showModal()">Career Goals</a></li>
+        <li class="nav-item"><a class="nav-link" href="CliftonAssessment.html">CliftonResults</a></li>
         <li class="nav-item"><a class="nav-link" href="new_resume_html.html">OnLine Resume</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/bobcatapano/" target="_blank">GitHub</a></li>
         <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn</a></li>
@@ -321,14 +322,13 @@ header h2 {
         </div>
 
         <div class="w3-container w3-card w3-white w3-margin-bottom">
-          <!-- <div id="current-date"></div> -->
           <h2 id="experience" class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-indigo"></i>Work Experience</h2>
           <div class="w3-container">
             <h5 class="w3-opacity"><b>Insight Global</b></h5>
             <h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2024 - Feb 2025</h6>
             <ul>
               <li>Developed dynamic pages using React JavaScript, Node.js, and Express, backed by PostgreSQL.</li>
-              <li>Developed front-end features using React front-end with ASP.NET Core, which used an MS SQL database</li>
+              <li>Brought prior full-stack perspective (including C#/.NET background) to UI component design, focusing on clarity, reusability, and integration readiness.</li>
               <li>Built automated test suites using Jest (unit) and Cypress (end-to-end).</li>
               <li>Utilized GitLab and participated in Agile sprints with Atlassian Jira.</li>
             </ul>
@@ -417,25 +417,13 @@ header h2 {
       showAbout();
     }
   });
-</script>
-<script>
-  function updateDateTime() {
-    const nowTime = new Date();
-    const dateTime = nowTime.toLocaleDateString();
-    const myTime = nowTime.toLocaleTimeString();
-   // document.getElementById('current-date').textContent = `As of this Date and Time: ${dateTime} ${myTime}`;
-  }
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
-  console.log("Resume was viewed on date: " + new Date());
-</script>
+  </script>
   <script>
     function showModal() {
       const modal = new bootstrap.Modal(document.getElementById('goalModal'));
       modal.show();
     }
 
-    // Handle fade-in when modal is shown
     document.addEventListener('DOMContentLoaded', () => {
       const modalElement = document.getElementById('goalModal');
 
@@ -449,7 +437,6 @@ header h2 {
         });
       });
 
-      // Optional: Reset visibility when modal is hidden
       modalElement.addEventListener('hidden.bs.modal', () => {
         const items = modalElement.querySelectorAll('.fade-in-list li');
         items.forEach(item => item.classList.remove('visible'));
