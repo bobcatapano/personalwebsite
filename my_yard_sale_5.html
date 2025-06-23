@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Yard Sale</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: lightblue;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #28a745;
+      color: white;
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 20px;
+      z-index: 0;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #f9f9f9;
+      transition: box-shadow 0.3s;
+    }
+    .card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .search-box {
+      margin-bottom: 10px;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      animation: slideDown 0.3s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .animated-marker {
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+    .form-container {
+      flex-direction: column;
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-container input,
+    .form-container textarea,
+    .form-container button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 14px;
+    }
+    #formModal {
+      z-index: 10000;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Find a Yard Sale</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Resume-Home Page</a></li>
+ <!--<li class="nav-item"><a class="nav-link" href="new_resume_html.html">OnLine Resume</a></li>-->
+        <li class="nav-item"><a class="nav-link" href="CliftonAssessment.html">CliftonResults</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/bobcatapano/" target="_blank">GitHub</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn</a></li>
+        <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="spa.html">SPA Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="asteriods_game.html">Asteroids</a></li>v
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<h1>Find a Yard Sale - just a demo. New data is not stored in a DB</h1>
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search by city or date (YYYY-MM-DD)" />
+  <button onclick="handleSearch()">Search</button>
+  <button onclick="openFormModal()">Add Yard Sale</button>
+</div>
+<div id="map"></div>
+<div id="yardSaleCards"></div>
+
+<div id="yardModal" class="modal" onclick="closeModal(event)">
+  <div class="modal-content" id="modalContent">
+    <span class="close-button" onclick="closeModalFromButton(event)">&times;</span>
+  </div>
+</div>
+
+<div id="formModal" class="modal" onclick="closeFormModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation();">
+    <span class="close-button" onclick="closeFormModalFromButton(event)">&times;</span>
+    <h2>Add a Yard Sale</h2>
+    <div class="form-container">
+      <label for="titleInput">Sale Title</label>
+      <input type="text" id="titleInput" placeholder="Sale Title" oninput="validateForm()" />
+
+      <label for="addressInput">Address</label>
+      <input type="text" id="addressInput" placeholder="Address" onblur="autoFillLatLng()" oninput="validateForm()" />
+
+      <label for="dateInput">mm/dd/yyyy</label>
+      <input type="date" id="dateInput" oninput="validateForm()" />
+
+      <label for="descriptionInput">Description</label>
+      <textarea id="descriptionInput" placeholder="Description" oninput="validateForm()"></textarea>
+
+      <label for="latInput">Latitude</label>
+      <input type="text" id="latInput" placeholder="Latitude" oninput="validateForm()" />
+
+      <label for="lngInput">Longitude</label>
+      <input type="text" id="lngInput" placeholder="Longitude" oninput="validateForm()" />
+
+      <button id="addSaleBtn" onclick="addYardSale()" disabled>Add Sale</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  let yardSales = [
+    {
+      id: 1,
+      title: "Neighborhood Yard Sale",
+      address: "123 Main St, Springfield",
+      date: "2025-06-22",
+      lat: 39.7817,
+      lng: -89.6501,
+      description: "Lots of great items including furniture, toys, and clothes."
+    },
+    {
+      id: 2,
+      title: "Community Garage Sale",
+      address: "456 Elm St, Springfield",
+      date: "2025-06-23",
+      lat: 39.7990,
+      lng: -89.6436,
+      description: "Multi-family sale with electronics, kitchenware, and more."
+    },
+    {
+      id: 3,
+      title: "Family Yard Sale",
+      address: "789 Oak St, Springfield",
+      date: "2025-06-24",
+      lat: 39.7886,
+      lng: -89.6622,
+      description: "Selling books, decor, and vintage items."
+    }
+  ];
+
+  let map = L.map('map').setView([39.7817, -89.6501], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  let markerRefs = {};
+
+  function displayMarkers(filteredSales) {
+    Object.values(markerRefs).forEach(marker => map.removeLayer(marker));
+    markerRefs = {};
+
+    filteredSales.forEach(sale => {
+      const marker = L.marker([sale.lat, sale.lng]).addTo(map)
+              .bindTooltip(`${sale.address}`, { permanent: false, direction: "top" })
+              .on('click', () => openModal(sale));
+
+      markerRefs[sale.id] = marker;
+    });
+  }
+
+  function displayCards(filteredSales) {
+    const container = document.getElementById('yardSaleCards');
+    container.innerHTML = '';
+    filteredSales.forEach(sale => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<h3>${sale.title}</h3><p>${sale.address}</p><p>${sale.date}</p>`;
+      card.addEventListener('click', () => openModal(sale));
+      container.appendChild(card);
+    });
+  }
+
+  function handleSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = yardSales.filter(sale =>
+            sale.address.toLowerCase().includes(query) || sale.date.includes(query)
+    );
+    displayMarkers(filtered);
+    displayCards(filtered);
+  }
+
+  function openModal(sale) {
+    const modal = document.getElementById('yardModal');
+    const content = document.getElementById('modalContent');
+    content.innerHTML = `
+        <span class="close-button" onclick="closeModalFromButton(event)">&times;</span>
+        <h2>${sale.title}</h2>
+        <p><strong>Address:</strong> ${sale.address}</p>
+        <p><strong>Date:</strong> ${sale.date}</p>
+        <p>${sale.description}</p>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(sale.address)}" target="_blank">Get Directions</a>
+      `;
+    modal.classList.add('show');
+
+    Object.values(markerRefs).forEach(marker => marker._icon?.classList.remove('animated-marker'));
+    markerRefs[sale.id]?._icon?.classList.add('animated-marker');
+  }
+
+  function closeModal(event) {
+    if (event.target.id === 'yardModal') {
+      document.getElementById('yardModal').classList.remove('show');
+      Object.values(markerRefs).forEach(marker => marker._icon?.classList.remove('animated-marker'));
+    }
+  }
+
+  function closeModalFromButton(event) {
+    event.stopPropagation();
+    document.getElementById('yardModal').classList.remove('show');
+    Object.values(markerRefs).forEach(marker => marker._icon?.classList.remove('animated-marker'));
+  }
+
+  function openFormModal() {
+    document.getElementById('formModal').classList.add('show');
+  }
+
+  function closeFormModal(event) {
+    if (event.target.id === 'formModal') {
+      document.getElementById('formModal').classList.remove('show');
+    }
+  }
+
+  function closeFormModalFromButton(event) {
+    event.stopPropagation();
+    document.getElementById('formModal').classList.remove('show');
+  }
+
+  function addYardSale() {
+
+    console.log("hello");
+    const title = document.getElementById('titleInput').value;
+    const address = document.getElementById('addressInput').value;
+    const date = document.getElementById('dateInput').value;
+    const description = document.getElementById('descriptionInput').value;
+    const lat = parseFloat(document.getElementById('latInput').value);
+    const lng = parseFloat(document.getElementById('lngInput').value);
+
+    if (!title || !address || !date || !description || isNaN(lat) || isNaN(lng)) {
+      alert('Please fill in all fields correctly.');
+      return;
+    }
+
+    const newSale = {
+      id: Date.now(),
+      title,
+      address,
+      date,
+      lat,
+      lng,
+      description
+    };
+
+    yardSales.push(newSale);
+    displayMarkers(yardSales);
+    displayCards(yardSales);
+
+    document.getElementById('titleInput').value = '';
+    document.getElementById('addressInput').value = '';
+    document.getElementById('dateInput').value = '';
+    document.getElementById('descriptionInput').value = '';
+    document.getElementById('latInput').value = '';
+    document.getElementById('lngInput').value = '';
+
+    closeFormModalFromButton(event);
+  }
+
+  displayMarkers(yardSales);
+  displayCards(yardSales);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Real-time validation
+  function validateForm() {
+    const title = document.getElementById('titleInput').value.trim();
+    const address = document.getElementById('addressInput').value.trim();
+    const date = document.getElementById('dateInput').value.trim();
+    const description = document.getElementById('descriptionInput').value.trim();
+    const lat = parseFloat(document.getElementById('latInput').value);
+    const lng = parseFloat(document.getElementById('lngInput').value);
+
+    const isValid = title && address && date && description && !isNaN(lat) && !isNaN(lng);
+    document.getElementById('addSaleBtn').disabled = !isValid;
+  }
+
+  // Auto-fill lat/lng using OpenStreetMap's Nominatim
+  async function autoFillLatLng() {
+    const address = document.getElementById('addressInput').value.trim();
+    if (!address) return;
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+      const data = await res.json();
+      if (data.length > 0) {
+        document.getElementById('latInput').value = data[0].lat;
+        document.getElementById('lngInput').value = data[0].lon;
+        validateForm();
+      }
+    } catch (e) {
+      console.error('Error fetching coordinates:', e);
+    }
+  }
+
+  // Save form state between sessions
+  const fields = ['titleInput', 'addressInput', 'dateInput', 'descriptionInput', 'latInput', 'lngInput'];
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    el.value = localStorage.getItem(id) || '';
+    el.addEventListener('input', () => localStorage.setItem(id, el.value));
+  });
+</script>
+</body>
+</html>

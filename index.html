@@ -57,10 +57,10 @@
     }
 
     .flip-button {
-      padding: 2px 4px;
-      font-size: 16px;
-      border-radius: 8px;
-    }
+    padding: 2px 4px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
 
     .back {
       transform: rotateY(180deg);
@@ -115,49 +115,49 @@
       transform: rotateY(180deg);
     }
 
-    .flip-wrapper,
-    .flip-container,
-    .flipper,
-    .front,
-    .back {
-      width: 100%;
-      max-width: 100%;
-    }
+  .flip-wrapper,
+  .flip-container,
+  .flipper,
+  .front,
+  .back {
+  width: 100%;
+  max-width: 100%;
+}
 
-    .front, .back {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.front, .back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    header h2 {
-      margin-bottom: 0.5rem;
-    }
+header h2 {
+  margin-bottom: 0.5rem;
+}
 
-    .section {
-      margin-top: 0;
-    }
+.section {
+  margin-top: 0;
+}
 
-    .round-image-wrapper {
-      width: 100%;
-      max-width: 250px;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      overflow: hidden;
-    }
+.round-image-wrapper {
+  width: 100%;
+  max-width: 250px;    
+  aspect-ratio: 1 / 1; 
+  border-radius: 50%;
+  overflow: hidden;
+}
 
-    .round-image {
-      width: 100%;       /* same width and height */
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
+ .round-image {
+  width: 100%;       /* same width and height */
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
-    >
-    </head>
-    <style>
-     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-  </style>
+>
+</head>
+<style>
+  html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
 <body class="w3-light-grey">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -171,43 +171,59 @@
         <li class="nav-item"><a class="nav-link" href="#about" onclick="showAbout()">About Me</a></li>
         <li class="nav-item"><a class="nav-link" onclick="showModal()">Career Goals</a></li>
         <li class="nav-item"><a class="nav-link" href="CliftonAssessment.html">CliftonResults</a></li>
-        <li class="nav-item"><a class="nav-link" href="new_resume_html.html">OnLine Resume</a></li>
+        <!--<li class="nav-item"><a class="nav-link" href="new_resume_html.html">OnLine Resume</a></li>-->
         <li class="nav-item"><a class="nav-link" href="https://github.com/bobcatapano/" target="_blank">GitHub</a></li>
         <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/rob-catapano-a08a05252/" target="_blank">LinkedIn</a></li>
-        <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce Example</a></li>
-        <li class="nav-item"><a class="nav-link" href="spa.html">SPA Example</a></li>
-        <li class="nav-item"><a class="nav-link" href="Smart_City_V3.html">Smart City Example</a></li>
+        <li class="nav-item"><a class="nav-link" href="ecommerce.html">ECommerce</a></li>
+        <li class="nav-item"><a class="nav-link" href="spa.html">SPA</a></li>
+        <li class="nav-item"><a class="nav-link" href="Smart_City_V3.html">Smart City</a></li>
         <li class="nav-item"><a class="nav-link" href="asteriods_game.html">Asteroids</a></li>
+        <li class="nav-item"><a class="nav-link" href="my_yard_sale_5.html">Find Yard Sale</a></li>
       </ul>
     </div>
   </div>
 </nav>
+        
+  <!-- Modal -->
+  <div class="modal fade" id="goalModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-<!-- Modal -->
-<div class="modal fade" id="goalModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h2 class="modal-title text-center w-100"><strong>Career Goals</strong></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
-      <div class="modal-header justify-content-center">
-        <h5 class="modal-title text-center w-100">Career Goals</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-body" style="
+      display: flex;
+      justify-content: center;
+      padding-top: 10px;
+      text-align: center;
+    ">
+      <main style="max-width: 1000px; width: 100%;">
+        <section style="background-color: white; padding: 5px; border-radius: 8px; margin: 0 auto;">
+          <ol class="fade-in-list" style="
+            list-style-position: inside;
+            padding-left: 0;
+            margin: 0;
+            line-height: 1.2;
+          ">
+            <li style="margin-bottom: 0;">Continue as a Full Stack Software Developer</li>
+            <li style="margin-bottom: 0;">Build a Portfolio and Personal Brand</li>
+            <li style="margin-bottom: 2px;">Speak at conferences or tech meetups</li>
+          </ol>
+          <br>
+          <video width="320" height="240" controls autoplay style="margin-top: 0;">
+            <source src="/video/Styled_Career_Growth_Roadmap_Presentation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </section>
+      </main>
+    </div>
+
       </div>
-
-      <div class="modal-body">
-        <main style="max-width: 1000px; margin: auto;">
-          <section style="background-color: white;padding: 7px;border-radius: 8px;">
-            <ol class="fade-in-list">
-              <li>Continue as a Full Stack Software Developer</li>
-              <li>Build a Portfolio and Personal Brand</li>
-              <li>Speak at conferences or tech meetups</li>
-            </ol>
-          </section>
-        </main>
-      </div>
-
     </div>
   </div>
-</div>
 
 <div class="container mt-5">
   <div class="w3-content w3-margin-top" style="max-width:1400px;">
@@ -232,7 +248,7 @@
             </div>
             <button class="btn btn-primary flip-button" onclick="flipCard()">Flip Image</button>
           </div>
-
+   
           <div id="contact/skills" class="w3-container">
             <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-indigo"></i>Software Developer</p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-indigo"></i>Layton, UT</p>
@@ -305,31 +321,32 @@
       </div>
       <div class="w3-twothird">
         <div class="w3-container w3-card w3-white">
-          <div id="about-section" class="about-container" style="display: none;">
+        <div id="about-section" class="about-container" style="display: none;">
 
-            <section class="w3-container">
-              <div class="w3-card w3-white w3-margin-bottom about-card">
-                <span class="close-button" onclick="hideAbout()">X</span>
+          <section class="w3-container">
+            <div class="w3-card w3-white w3-margin-bottom about-card">
+              <span class="close-button" onclick="hideAbout()">X</span>
+    
+             <header style="margin-bottom: 0.5rem;">
+  <h2>About Me,</h2>
+</header>
+<main>
+  <section>
+    <article>
+      <div class="section" style="margin-top: 0;">
+        <p><strong>I'm a software developer</strong> with a background in quality assurance and a growing focus on full-stack development. I've gradually built experience in areas like C#, .NET, JavaScript, and Python, and I enjoy working alongside others to build clean, maintainable code.
 
-                <header style="margin-bottom: 0.5rem;">
-                  <h2>About Me,</h2>
-                </header>
-                <main>
-                  <section>
-                    <article>
-                      <div class="section" style="margin-top: 0;">
-                        <p><strong>Software Engineer with 5+ years of experience</strong> delivering full-stack web applications, automation frameworks, and cloud-based solutions across defense, healthcare, and financial sectors. Skilled in C#, JavaScript, TypeScript, Python, SQL, HTML, CSS, and Azure.</p>
-                        <p style="text-align: center;"><strong>(something more personal)</strong></p>
-                        <p><strong>Music has been a constant in my life.</strong> I play both piano and guitar, I like George Winston’s piano compositions and artists such as Johnny Cash and Phish.</p>
-                        <p><strong>Outside of music,</strong> some of my favorite movies include <em>"This Is Spinal Tap"</em>, <em>"Weekend at Bernie’s"</em>, and <em>"The Adventures of Baron Munchausen"</em>. The books I enjoy most are <em>"The Hobbit"</em>, <em>"A Connecticut Yankee in King Arthur’s Court"</em>, and <em>"The Feynman Lectures on Physics"</em>.</p>
-                      </div>
-                    </article>
-                  </section>
-                </main>
+I hold a Master's degree in Computation, which gave me a solid foundation in software concepts, but most of what I've learned has come from working closely with teammates, learning from their feedback, and contributing where I can. I'm not looking to be the smartest person in the room—just someone who learns steadily, supports the team, and does good, honest work.</p>
+        <p><strong>Music has been a constant in my life.</strong> I play both piano and guitar, I like George Winston’s piano compositions and artists such as Johnny Cash and Phish.</p>
+        <p><strong>Outside of music,</strong> some of my favorite movies include <em>"This Is Spinal Tap"</em>, <em>"Weekend at Bernie’s"</em>, and <em>"The Adventures of Baron Munchausen"</em>. The books I enjoy most are <em>"The Hobbit"</em>, <em>"A Connecticut Yankee in King Arthur’s Court"</em>, and <em>"The Feynman Lectures on Physics"</em>.</p>
+      </div>
+    </article>
+  </section>
+</main>
 
-              </div>
-            </section>
-          </div>
+            </div>
+          </section>
+        </div>
         </div>
 
         <div class="w3-container w3-card w3-white w3-margin-bottom">
@@ -372,7 +389,7 @@
             <ul>
               <li>Enhanced ASP.NET MVC and SQL Server-based application.</li>
               <li>Built RESTful APIs and backend services in C#.</li>
-              <li>Gained working knowledge of React and JavaScript.</li>
+              <li>Gained working knowledge of React and JavaScript/TypeScript.</li>
               <li>Created Python/Selenium end-to-end automation tests.</li>
               <li>Participated in Agile development cycles.</li>
             </ul>
@@ -381,7 +398,7 @@
         <div class="w3-container w3-card w3-white">
           <h2 id="education" class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-indigo"></i>Education</h2>
           <div class="w3-container">
-            <h5 class="w3-opacity"><b><a href="https://ox.ac.uk" target="_blank">Oxford University</a></b></h5>
+            <h5 class="w3-opacity"><b><a href="https://ox.ac.uk" target="_blank">Oxford University</a></b> - <b><a href="https://www.exeter.ox.ac.uk/" target="_blank">Exeter College</a></b></h5>
             <h6 class="w3-text-indigo"><i class="fas fa-user-graduate fa-fw w3-margin-right"></i>M.S. Computation</h6>
             <p><em>Computer Science related</em></p>
           </div>
@@ -428,41 +445,38 @@
       showAbout();
     }
   });
-</script>
-<script>
-  function showModal() {
-    const modal = new bootstrap.Modal(document.getElementById('goalModal'));
-    modal.show();
-  }
+  </script>
+  <script>
+    function showModal() {
+      const modal = new bootstrap.Modal(document.getElementById('goalModal'));
+      modal.show();
+    }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const modalElement = document.getElementById('goalModal');
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalElement = document.getElementById('goalModal');
 
-    modalElement.addEventListener('shown.bs.modal', () => {
-      const items = modalElement.querySelectorAll('.fade-in-list li');
-      items.forEach((item, index) => {
-        item.classList.remove('visible'); // reset first
-        setTimeout(() => {
-          item.classList.add('visible');
-        }, index * 600);
+      modalElement.addEventListener('shown.bs.modal', () => {
+        const items = modalElement.querySelectorAll('.fade-in-list li');
+        items.forEach((item, index) => {
+          item.classList.remove('visible'); // reset first
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 600);
+        });
+      });
+
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        const items = modalElement.querySelectorAll('.fade-in-list li');
+        items.forEach(item => item.classList.remove('visible'));
       });
     });
-
-    modalElement.addEventListener('hidden.bs.modal', () => {
-      const items = modalElement.querySelectorAll('.fade-in-list li');
-      items.forEach(item => item.classList.remove('visible'));
-    });
-  });
-</script>
-<script>
+  </script>
+  <script>
   function flipCard() {
-    //document.getElementById('flipperCard').classList.toggle('flipped');
     document.querySelector('.flip-container').classList.toggle('flipped');
 
   }
 </script>
-
-
 </body>
 </html>
 
